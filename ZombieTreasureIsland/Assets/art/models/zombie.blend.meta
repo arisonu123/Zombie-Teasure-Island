@@ -1,0 +1,707 @@
+fileFormatVersion: 2
+guid: 19d315e757b36fd469b7d7791aae88b2
+timeCreated: 1456998473
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Back
+    100002: Fingers1_Left
+    100004: Fingers1_Right
+    100006: Fingers2_Left
+    100008: Fingers2_Right
+    100010: Foot_Left
+    100012: Foot_Right
+    100014: Forearm_Left
+    100016: Forearm_Right
+    100018: Gib1
+    100020: Gib2
+    100022: Gib3
+    100024: Gib4
+    100026: Gib5
+    100028: Gib6
+    100030: Gib7
+    100032: Gib8
+    100034: GibArm
+    100036: Gibs
+    100038: Hand_Left
+    100040: Hand_Right
+    100042: Head
+    100044: Hip
+    100046: MaleArm
+    100048: RenderPlatform
+    100050: ShadowPlane
+    100052: Shin_Left
+    100054: Shin_Right
+    100056: Thigh_Left
+    100058: Thigh_Right
+    100060: Thumb1_Left
+    100062: Thumb1_Right
+    100064: Thumb2_Left
+    100066: Thumb2_Right
+    100068: Toes_Left
+    100070: Toes_Right
+    100072: Upperarm_Left
+    100074: Upperarm_Right
+    100076: Zombie
+    100078: //RootNode
+    400000: Back
+    400002: Fingers1_Left
+    400004: Fingers1_Right
+    400006: Fingers2_Left
+    400008: Fingers2_Right
+    400010: Foot_Left
+    400012: Foot_Right
+    400014: Forearm_Left
+    400016: Forearm_Right
+    400018: Gib1
+    400020: Gib2
+    400022: Gib3
+    400024: Gib4
+    400026: Gib5
+    400028: Gib6
+    400030: Gib7
+    400032: Gib8
+    400034: GibArm
+    400036: Gibs
+    400038: Hand_Left
+    400040: Hand_Right
+    400042: Head
+    400044: Hip
+    400046: MaleArm
+    400048: RenderPlatform
+    400050: ShadowPlane
+    400052: Shin_Left
+    400054: Shin_Right
+    400056: Thigh_Left
+    400058: Thigh_Right
+    400060: Thumb1_Left
+    400062: Thumb1_Right
+    400064: Thumb2_Left
+    400066: Thumb2_Right
+    400068: Toes_Left
+    400070: Toes_Right
+    400072: Upperarm_Left
+    400074: Upperarm_Right
+    400076: Zombie
+    400078: //RootNode
+    2300000: RenderPlatform
+    2300002: ShadowPlane
+    3300000: RenderPlatform
+    3300002: ShadowPlane
+    4300000: RenderPlatform
+    4300002: Gibs
+    4300004: Zombie
+    4300006: ShadowPlane
+    7400000: Default Take
+    7400002: Action
+    7400004: walk
+    7400006: death
+    7400008: attack
+    9500000: //RootNode
+    13700000: Gibs
+    13700002: Zombie
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Gibs
+        weight: 1
+      - path: RenderPlatform
+        weight: 1
+      - path: RenderPlatform/GibArm
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib1
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib2
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib3
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib4
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib5
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib6
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib7
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib8
+        weight: 1
+      - path: RenderPlatform/MaleArm
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Head
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left/Toes_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right/Toes_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left/Fingers2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left/Thumb2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right/Fingers2_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right/Thumb2_Right
+        weight: 1
+      - path: ShadowPlane
+        weight: 1
+      - path: Zombie
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Action
+      takeName: Action
+      firstFrame: 0
+      lastFrame: 3
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Gibs
+        weight: 1
+      - path: RenderPlatform
+        weight: 1
+      - path: RenderPlatform/GibArm
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib1
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib2
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib3
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib4
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib5
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib6
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib7
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib8
+        weight: 1
+      - path: RenderPlatform/MaleArm
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Head
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left/Toes_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right/Toes_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left/Fingers2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left/Thumb2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right/Fingers2_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right/Thumb2_Right
+        weight: 1
+      - path: ShadowPlane
+        weight: 0
+      - path: Zombie
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: walk
+      takeName: Action_001
+      firstFrame: 3.8
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Gibs
+        weight: 1
+      - path: RenderPlatform
+        weight: 1
+      - path: RenderPlatform/GibArm
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib1
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib2
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib3
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib4
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib5
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib6
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib7
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib8
+        weight: 1
+      - path: RenderPlatform/MaleArm
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Head
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left/Toes_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right/Toes_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left/Fingers2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left/Thumb2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right/Fingers2_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right/Thumb2_Right
+        weight: 1
+      - path: ShadowPlane
+        weight: 1
+      - path: Zombie
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: death
+      takeName: Action_002
+      firstFrame: 27
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Gibs
+        weight: 1
+      - path: RenderPlatform
+        weight: 1
+      - path: RenderPlatform/GibArm
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib1
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib2
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib3
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib4
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib5
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib6
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib7
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib8
+        weight: 1
+      - path: RenderPlatform/MaleArm
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Head
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left/Toes_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right/Toes_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left/Fingers2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left/Thumb2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right/Fingers2_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right/Thumb2_Right
+        weight: 1
+      - path: ShadowPlane
+        weight: 1
+      - path: Zombie
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attack
+      takeName: Action_001
+      firstFrame: 12
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Gibs
+        weight: 1
+      - path: RenderPlatform
+        weight: 1
+      - path: RenderPlatform/GibArm
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib1
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib2
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib3
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib4
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib5
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib6
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib7
+        weight: 1
+      - path: RenderPlatform/GibArm/Gib8
+        weight: 1
+      - path: RenderPlatform/MaleArm
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Head
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Left/Shin_Left/Foot_Left/Toes_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Hip/Thigh_Right/Shin_Right/Foot_Right/Toes_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Fingers1_Left/Fingers2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Left/Forearm_Left/Hand_Left/Thumb1_Left/Thumb2_Left
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Fingers1_Right/Fingers2_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right
+        weight: 1
+      - path: RenderPlatform/MaleArm/Back/Upperarm_Right/Forearm_Right/Hand_Right/Thumb1_Right/Thumb2_Right
+        weight: 1
+      - path: ShadowPlane
+        weight: 1
+      - path: Zombie
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,329 @@
+fileFormatVersion: 2
+guid: bd83bae4bae06f44da60e6ad6f777b5c
+timeCreated: 1458115189
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: survivalpack0001_0
+    21300002: survivalpack0001_1
+    21300004: survivalpack0001_2
+    21300006: survivalpack0001_3
+    21300008: survivalpack0001_4
+    21300010: survivalpack0001_5
+    21300012: survivalpack0001_6
+    21300014: survivalpack0001_7
+    21300016: survivalpack0001_8
+    21300018: survivalpack0001_9
+    21300020: survivalpack0001_10
+    21300022: survivalpack0001_11
+    21300024: survivalpack0001_12
+    21300026: survivalpack0001_13
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: survivalpack0001_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 351
+        width: 69
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.5, y: 44.5}
+        - {x: 5.5, y: 44.5}
+        - {x: 3.5, y: 42.5}
+        - {x: -34.5, y: -34.5}
+        - {x: -34.5, y: -44.5}
+        - {x: -23.5, y: -44.5}
+        - {x: 32.5, y: 16.5}
+        - {x: 34.5, y: 20.5}
+        - {x: 34.5, y: 39.5}
+    - name: survivalpack0001_1
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 342
+        width: 70
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 14.5}
+        - {x: -35, y: -44.5}
+        - {x: 6, y: -44.5}
+        - {x: 35, y: -31.5}
+        - {x: 35, y: 29.5}
+        - {x: 20, y: 44.5}
+        - {x: -11, y: 44.5}
+        - {x: -27, y: 33.5}
+    - name: survivalpack0001_2
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 340
+        width: 56
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 43.5}
+        - {x: -12, y: 30.5}
+        - {x: -28, y: -32.5}
+        - {x: -28, y: -43.5}
+        - {x: -9, y: -43.5}
+        - {x: 27, y: 0.5}
+        - {x: 28, y: 3.5}
+        - {x: 28, y: 43.5}
+    - name: survivalpack0001_3
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 351
+        width: 74
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 35}
+        - {x: -36, y: -1}
+        - {x: -37, y: -3}
+        - {x: -37, y: -35}
+        - {x: 17, y: -35}
+        - {x: 37, y: -22}
+        - {x: 37, y: 22}
+        - {x: 26, y: 35}
+    - name: survivalpack0001_4
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 351
+        width: 78
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 35.5}
+        - {x: -36, y: 15.5}
+        - {x: -39, y: 3.5}
+        - {x: -39, y: -35.5}
+        - {x: 19, y: -35.5}
+        - {x: 39, y: -29.5}
+        - {x: 39, y: 31.5}
+        - {x: 28, y: 35.5}
+    - name: survivalpack0001_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 237
+        width: 70
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34, y: 37}
+        - {x: -35, y: 34}
+        - {x: -35, y: -37}
+        - {x: -22, y: -37}
+        - {x: 35, y: -15}
+        - {x: 35, y: 22}
+        - {x: 31, y: 37}
+    - name: survivalpack0001_6
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 234
+        width: 41
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13.5, y: 43.5}
+        - {x: 6.5, y: 34.5}
+        - {x: -1.5, y: 21.5}
+        - {x: -20.5, y: -14.5}
+        - {x: -20.5, y: -43.5}
+        - {x: 1.5, y: -43.5}
+        - {x: 20.5, y: -38.5}
+        - {x: 20.5, y: 43.5}
+    - name: survivalpack0001_7
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 231
+        width: 40
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 49}
+        - {x: -9, y: 32}
+        - {x: -20, y: -5}
+        - {x: -20, y: -49}
+        - {x: 8, y: -49}
+        - {x: 20, y: -34}
+        - {x: 20, y: 49}
+    - name: survivalpack0001_8
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 236
+        width: 54
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 46.5}
+        - {x: -27, y: 38.5}
+        - {x: -27, y: -46.5}
+        - {x: -8, y: -46.5}
+        - {x: 26, y: 7.5}
+        - {x: 27, y: 14.5}
+        - {x: 27, y: 46.5}
+    - name: survivalpack0001_9
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 129
+        width: 68
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16, y: 35}
+        - {x: -16, y: 35}
+        - {x: -34, y: 13}
+        - {x: -34, y: -14}
+        - {x: -15, y: -35}
+        - {x: 14, y: -35}
+        - {x: 34, y: -13}
+        - {x: 34, y: 15}
+    - name: survivalpack0001_10
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 132
+        width: 33
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3.5, y: 38.5}
+        - {x: -10.5, y: 38.5}
+        - {x: -16.5, y: 10.5}
+        - {x: -16.5, y: -38.5}
+        - {x: 12.5, y: -38.5}
+        - {x: 16.5, y: -36.5}
+        - {x: 16.5, y: -3.5}
+        - {x: 12.5, y: 12.5}
+    - name: survivalpack0001_11
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 134
+        width: 57
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: 37.5}
+        - {x: -28.5, y: -5.5}
+        - {x: -28.5, y: -37.5}
+        - {x: -8.5, y: -37.5}
+        - {x: 28.5, y: -12.5}
+        - {x: 28.5, y: 37.5}
+    - name: survivalpack0001_12
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 141
+        width: 32
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 34}
+        - {x: -16, y: 5}
+        - {x: -16, y: -14}
+        - {x: -7, y: -34}
+        - {x: 0, y: -34}
+        - {x: 16, y: -11}
+        - {x: 16, y: 34}
+    - name: survivalpack0001_13
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 150
+        width: 34
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 37.5}
+        - {x: -17, y: 28.5}
+        - {x: -17, y: -37.5}
+        - {x: 17, y: -37.5}
+        - {x: 17, y: 37.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
