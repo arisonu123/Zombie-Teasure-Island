@@ -3,10 +3,12 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class levelManager : MonoBehaviour {
-    private float timeBetweenWaves;
-    private int numberAddedPerWave;
-    private int wave;
 #pragma warning disable 649
+    [SerializeField]
+    private float timeBetweenWaves= 10;
+    [SerializeField]
+    private int numberAddedPerWave = 2;
+    private int wave;
     [SerializeField]
     [Header("Wave Settings")]
     [Tooltip("The total number of waves")]
@@ -84,6 +86,14 @@ public class levelManager : MonoBehaviour {
         }
         if (wave == totalWaves && GameObject.FindGameObjectsWithTag("enemy").Length == 0)
         {
+            int currentLevel = 0;
+            int.TryParse(GameMaster._instance_.levelSelected, out currentLevel);
+            if (currentLevel > 0){
+                if (GameMaster._instance_.maxLevel > currentLevel)
+                {
+                    GameMaster._instance_.levelsAvailable.Add(currentLevel + 1);
+                }
+            }
             SceneManager.LoadScene("levelCleared");
         }
 	}
@@ -129,7 +139,7 @@ public class levelManager : MonoBehaviour {
                 for (int num = level * 2+(numberAddedPerWave^ (wave-1)); num >0; num--)
                 {
                     GameObject zombie=Instantiate(zombiePrefab, spawn.position, Quaternion.identity)as GameObject;
-                    yield return new WaitForSeconds(.5f);//wait 1 second before spawning next zombie
+                    yield return new WaitForSeconds(1f);//wait 1 second before spawning next zombie
                 }
               
             }

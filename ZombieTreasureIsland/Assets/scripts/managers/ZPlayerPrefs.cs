@@ -38,23 +38,23 @@ public static class ZPlayerPrefs
     static bool hasSetPassword = false;
 
 
-    //level 1 min/max variables for possible settings
-    public static int[] minZombieHP;
-    public static int[] maxZombieHP;
-    public static int[] minZombieSpeed;
-    public static int[] maxZombieSpeed;
-    public static int[] minTimeBetweenWaves;
-    public static int[] maxTimeBetweenWaves;
-    public static int[] minZombieDamage;
-    public static int[] maxZombieDamage;
-    public static int[] minZombieNum;
-    public static int[] maxZombieNum;
-    public static int[] minPlayerHP;
-    public static int[] maxPlayerHP;
-    public static int[] minPlayerDamage;
-    public static int[] maxPlayerDamage;
-    public static int[] minPlayerSpeed;
-    public static int[] maxPlayerSpeed;
+    //level min/max variables for possible settings
+    public static int[] minZombieHP = new int[0];
+    public static int[] maxZombieHP = new int[0];
+    public static int[] minZombieSpeed = new int[0];
+    public static int[] maxZombieSpeed = new int[0];
+    public static int[] minTimeBetweenWaves = new int[0];
+    public static int[] maxTimeBetweenWaves = new int[0];
+    public static int[] minZombieDamage = new int[0];
+    public static int[] maxZombieDamage = new int[0];
+    public static int[] minZombieNum = new int[0];
+    public static int[] maxZombieNum = new int[0];
+    public static int[] minPlayerHP = new int[0];
+    public static int[] maxPlayerHP = new int[0];
+    public static int[] minPlayerDamage = new int[0];
+    public static int[] maxPlayerDamage = new int[0];
+    public static int[] minPlayerSpeed = new int[0];
+    public static int[] maxPlayerSpeed = new int[0];
 
 
     //Custom settings storage
@@ -65,8 +65,6 @@ public static class ZPlayerPrefs
     //global play time variable
     public static int playTime = 0;
     public static int thisRun = 0;
-
-
 
     public static void DeleteAll()
     {
@@ -197,6 +195,10 @@ public static class ZPlayerPrefs
 
         hasSetPassword = true;
 
+        if (HasKey("PlayerDoubloons"))
+        {
+            GameMaster._instance_.playerDoubloons = GetInt("PlayerDoubloons");
+        }
         //level 1 keys
 
         //zombie custom 1 level 1 settings
@@ -310,135 +312,135 @@ public static class ZPlayerPrefs
             custom3Settings[0][7] = GetInt("lvl1Custom3PD");
         }
 
-        for(int i = 0; i < GameMaster._instance_.maxLevel; i++)//set modifications for custom settings available, base on items bought
+        for(int i = 0; i < GameMaster._instance_.maxLevel; i++)//set modifications for custom settings available, based on items bought
         {
-            if(HasKey("level" + i + "minZHP"))
+            if(HasKey("level" + (i+1) + "minZHP"))
             {
                 if (minZombieHP.Length==0)
                 {
                     minZombieHP = new int[GameMaster._instance_.maxLevel];
                 }
-                minZombieHP[i] = GetInt("level" + i + "minZHP");
+                minZombieHP[i] = GetInt("level" + (i+1) + "minZHP");
             }
-            if (HasKey("level" + i + "maxZHP"))
+            if (HasKey("level" + (i + 1) + "maxZHP"))
             {
                 if (maxZombieHP.Length==0)
                 {
                     maxZombieHP = new int[GameMaster._instance_.maxLevel];
                 }
-                maxZombieHP[i] = GetInt("level" + i + "maxZHP");
+                maxZombieHP[i] = GetInt("level" + (i+1) + "maxZHP");
             }
-            if (HasKey("level" + i + "minZSpd"))
+            if (HasKey("level" + (i + 1) + "minZSpd"))
             {
                 if (minZombieSpeed.Length==0)
                 {
                     minZombieSpeed = new int[GameMaster._instance_.maxLevel];
                 }
-                minZombieSpeed[i] = GetInt("level" + i + "minZSpd");
+                minZombieSpeed[i] = GetInt("level" + (i+1) + "minZSpd");
             }
-            if (HasKey("level" + i + "maxZSpd"))
+            if (HasKey("level" + (i + 1) + "maxZSpd"))
             {
                 if (maxZombieSpeed.Length==0)
                 {
                     maxZombieSpeed = new int[GameMaster._instance_.maxLevel];
                 }
-                maxZombieSpeed[i] = GetInt("level" + i + "maxZSpd");
+                maxZombieSpeed[i] = GetInt("level" + (i+1) + "maxZSpd");
             }
-            if (HasKey("level" + i + "minTBWs"))
+            if (HasKey("level" + (i + 1) + "minTBWs"))
             {
                 if (minTimeBetweenWaves.Length==0)
                 {
                     minTimeBetweenWaves = new int[GameMaster._instance_.maxLevel];
                 }
-                minTimeBetweenWaves[i] = GetInt("level" + i + "minTBWs");
+                minTimeBetweenWaves[i] = GetInt("level" + (i + 1) + "minTBWs");
             }
-            if (HasKey("level" + i + "maxTBWs"))
+            if (HasKey("level" + (i + 1) + "maxTBWs"))
             {
                 if (maxTimeBetweenWaves.Length==0)
                 {
                     maxTimeBetweenWaves = new int[GameMaster._instance_.maxLevel];
                 }
-                maxTimeBetweenWaves[i] = GetInt("level" + i + "maxTBWs");
+                maxTimeBetweenWaves[i] = GetInt("level" + (i + 1) + "maxTBWs");
             }
-            if (HasKey("level" + i + "minZD"))
+            if (HasKey("level" + (i + 1) + "minZD"))
             {
                 if (minZombieDamage.Length==0)
                 {
                     minZombieDamage = new int[GameMaster._instance_.maxLevel];
                 }
-                minZombieDamage[i] = GetInt("level" + i + "minZD");
+                minZombieDamage[i] = GetInt("level" + (i + 1)+ "minZD");
             }
-            if (HasKey("level" + i + "maxZD"))
+            if (HasKey("level" + (i + 1) + "maxZD"))
             {
                 if (maxZombieNum.Length==0)
                 {
                     maxZombieDamage = new int[GameMaster._instance_.maxLevel];
                 }
-                maxZombieDamage[i] = GetInt("level" + i + "maxZD");
+                maxZombieDamage[i] = GetInt("level" + (i + 1) + "maxZD");
             }
-            if (HasKey("level" + i + "minZNum"))
+            if (HasKey("level" + (i + 1) + "minZNum"))
             {
                 if (minZombieNum.Length==0)
                 {
                     minZombieNum = new int[GameMaster._instance_.maxLevel];
                 }
-                minZombieNum[i] = GetInt("level" + i + "minZNum");
+                minZombieNum[i] = GetInt("level" + (i + 1) + "minZNum");
             }
-            if (HasKey("level" + i + "maxZNum"))
+            if (HasKey("level" + (i + 1) + "maxZNum"))
             {
                 if (maxZombieNum.Length==0)
                 {
                     maxZombieNum = new int[GameMaster._instance_.maxLevel];
                 }
-                maxZombieNum[i] = GetInt("level" + i + "maxZNum");
+                maxZombieNum[i] = GetInt("level" + (i + 1) + "maxZNum");
             }
-            if (HasKey("level" + i + "minPHP"))
+            if (HasKey("level" + (i + 1) + "minPHP"))
             {
                 if (minPlayerHP.Length==0)
                 {
                     minPlayerHP= new int[GameMaster._instance_.maxLevel];
                 }
-                minPlayerHP[i] = GetInt("level" + i + "minPHP");
+                minPlayerHP[i] = GetInt("level" + (i + 1) + "minPHP");
             }
-            if (HasKey("level" + i + "maxPHP"))
+            if (HasKey("level" + (i + 1) + "maxPHP"))
             {
                 if (maxPlayerHP.Length==0)
                 {
                     maxPlayerHP = new int[GameMaster._instance_.maxLevel];
                 }
-                maxPlayerHP[i] = GetInt("level" + i + "maxPHP");
+                maxPlayerHP[i] = GetInt("level" + (i + 1) + "maxPHP");
             }
-            if (HasKey("level" + i + "minPD"))
+            if (HasKey("level" + (i + 1) + "minPD"))
             {
                 if (minPlayerDamage.Length == 0)
                 {
                     minPlayerDamage = new int[GameMaster._instance_.maxLevel];
                 }
-                minPlayerDamage[i] = GetInt("level" + i + "minPD");
+                minPlayerDamage[i] = GetInt("level" + (i + 1) + "minPD");
             }
-            if (HasKey("level" + i + "maxPD"))
+            if (HasKey("level" + (i + 1) + "maxPD"))
             {
                 if (maxPlayerDamage.Length == 0)
                 {
                     maxPlayerDamage = new int[GameMaster._instance_.maxLevel];
                 }
-                maxPlayerDamage[i] = GetInt("level" + i + "maxPD");
+                maxPlayerDamage[i] = GetInt("level" + (i + 1) + "maxPD");
             }
-            if (HasKey("level" + i + "minPSpd"))
+            if (HasKey("level" + (i + 1) + "minPSpd"))
             {
                 if (minPlayerSpeed.Length == 0)
                 {
                     minPlayerSpeed = new int[GameMaster._instance_.maxLevel];
                 }
-                minPlayerSpeed[i] = GetInt("level" + i + "minPSpd");
+                minPlayerSpeed[i] = GetInt("level" + (i + 1) + "minPSpd");
             }
-            if (HasKey("level" + i + "maxPSpd"))
+            if (HasKey("level" + (i + 1) + "maxPSpd"))
             {
                 if (maxPlayerSpeed.Length == 0)
                 {
                     maxPlayerSpeed = new int[GameMaster._instance_.maxLevel];
                 }
-                maxPlayerSpeed[i] = GetInt("level" + i + "maxPSpd");
+                maxPlayerSpeed[i] = GetInt("level" + (i + 1) + "maxPSpd");
             }
         }
 

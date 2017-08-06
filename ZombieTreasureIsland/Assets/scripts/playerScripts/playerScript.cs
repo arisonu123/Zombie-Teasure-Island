@@ -9,20 +9,17 @@ public class playerScript : MonoBehaviour {
 #pragma warning disable 649
     [SerializeField]
     [Header("Player settings")]
-    private float maxHealth;
-    private float speed=2f;
+    private float maxHealth=500;
+    [SerializeField]
+    public float speed=2f;
     [SerializeField]
     private float defaultSpeed = 2f;
     [SerializeField]
-    private float damage=2;
-    private Transform dir = null;
+    private float damage=25;
     [SerializeField]
     private float throwForce=20;//force pellet is shot at
     [SerializeField]
     private float shellTimeOut = 30;//used to let program know time to destroy pellet
-    private Vector3 playerPos;
-    [SerializeField]
-    private Rigidbody shellMove;//used to apply force to shell when shot
     [SerializeField]
     private Transform playerGraphic;
     [SerializeField]
@@ -33,17 +30,11 @@ public class playerScript : MonoBehaviour {
     [SerializeField]
     private GameObject ammo;
 
-    [Header("Projectile weapon settings")]
     [SerializeField]
-    private Transform projectileWeaponContainer;
+    [Header("Player Weapon Audio")]
+    private AudioClip swordSwoosh;
     [SerializeField]
-    private float projectileWeaponAimSpeed = 1f;
-
-    [Header("Melee weapon settings")]
-    [SerializeField]
-    private Transform meleeWeaponContainer;
-    [SerializeField]
-    private float meleeWeaponAimSpeed = 1f;
+    private AudioClip gunShot;
 
     private Animator controller;
 
@@ -165,41 +156,34 @@ public class playerScript : MonoBehaviour {
             }
 
         }
-        playerPos = this.gameObject.transform.position;
+        doubloonsText.GetComponent<Text>().text = "Doubloons: "+GameMaster._instance_.playerDoubloons;
         //Make speed,damage,and hp/health the percent of levels base set in difficulty settings    
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (projectileWeaponContainer)
+        if (!controller.GetBool("dead"))
         {
-            projectileWeaponContainer.rotation = Quaternion.Slerp(projectileWeaponContainer.rotation, transform.rotation, projectileWeaponAimSpeed * Time.deltaTime);
-        }
+            Movement();
+            //TODO:Refactor this to use buttons from the input manager so the player can change it if they wish
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S))
+            {
+               controller.SetBool("walk", true);
+            }
+            else
+            {
+                controller.SetBool("walk", false);
+            }
 
-        if (meleeWeaponContainer)
-        {
-            meleeWeaponContainer.rotation = Quaternion.Slerp(meleeWeaponContainer.rotation, transform.rotation, meleeWeaponAimSpeed * Time.deltaTime);
-        }
-
-        Movement();
-        //TODO:Refactor this to use buttons from the input manager so the player can change it if they wish
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S))
-        {
-            controller.SetBool("walk", true);
-        }
-        else
-        {
-            controller.SetBool("walk", false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))//attack with sword
-        {
-            StartCoroutine("swordAttack");
-        }
-        if (Input.GetKeyDown(KeyCode.P))//attack with gun
-        {
-            StartCoroutine("gunAttack");
+            if (Input.GetKeyDown(KeyCode.O))//attack with sword
+            {
+                StartCoroutine("swordAttack");
+            }
+            if (Input.GetKeyDown(KeyCode.P))//attack with gun
+            {
+                gunAttack();
+            }
         }
     }
 
@@ -214,8 +198,7 @@ public class playerScript : MonoBehaviour {
         if (horMovement != 0 && vertMovement != 0)
         {
             speed = defaultSpeed - .5f;
-            UnityEngine.Debug.LogError("horMovement is: " + horMovement);
-            UnityEngine.Debug.LogError("vertMovement is: " + vertMovement);
+                       
 
         }
         else
@@ -223,14 +206,32 @@ public class playerScript : MonoBehaviour {
             speed = defaultSpeed;
 
         }
+        Vector3 moveDirection = new Vector3(horMovement, 0,vertMovement);
+        moveDirection = transform.TransformDirection(moveDirection);
+        moveDirection *= speed;
+        // Vector3 fixedTransform=new Vector3(moveDirection.x,0,moveDirection.z);
+        if (GetComponent<CharacterController>().isGrounded)
+        {
+            GetComponent<CharacterController>().Move(moveDirection * Time.deltaTime);
+        }
+       /* if(transform.position.y != 0 ){
+            Vector3 zeroY = new Vector3(transform.position.x, 0, transform.position.y);
+            transform.position = zeroY;
+        }*/
+
         // transform.Translate(transform.right * horMovement * Time.deltaTime * speed);
         // transform.Translate(transform.forward * vertMovement * Time.deltaTime * speed);
-
+        // GetComponent<Rigidbody>().position=(transform.right * horMovement * Time.deltaTime * speed);
+        //GetComponent<Rigidbody>().position =(transform.forward * vertMovement * Time.deltaTime * speed);
+        // GetComponent<Rigidbody>().velocity = new Vector3(speed * horMovement, GetComponent<Rigidbody>().velocity.y,speed * vertMovement);
+        //GetComponentInChildren<Rigidbody>().velocity = new Vector3( speed * horMovement, GetComponentInChildren<Rigidbody>().velocity.y, speed * vertMovement);
+        // GetComponent<Rigidbody>().position = GetComponentInChildren<Rigidbody>().position;
+        // GetComponent<Rigidbody>().velocity = new Vector2(GetComponent<Rigidbody>().velocity.z, speed * vertMovement);
         //Player graphic rotation
-        Vector3 moveDirection = new Vector3(horMovement, 0, vertMovement);
+        Vector3 rotateDirection = new Vector3(horMovement, 0, vertMovement);
         if (moveDirection != Vector3.zero)
         {
-            Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+            Quaternion newRotation = Quaternion.LookRotation(rotateDirection);
             playerGraphic.transform.rotation = Quaternion.Slerp(playerGraphic.transform.rotation, newRotation, Time.deltaTime * 8);
 
         }
@@ -238,112 +239,64 @@ public class playerScript : MonoBehaviour {
 
     private IEnumerator swordAttack()//sword attack coroutine
     {   
-        //sword.SetActive(true);
         sword.GetComponent<BoxCollider>().enabled = true;
         controller.SetTrigger("attack1");
         yield return new WaitForSeconds(.30f);
         sword.GetComponent<BoxCollider>().enabled = false;
-        
-        //sword.SetActive(false);
+             
     }
 
-    private IEnumerator gunAttack()//gun attack coroutine
+    /// <summary>
+    /// Plays the sword attack sound
+    /// </summary>
+    public void playSwordAtkSnd()
     {
-        gun.SetActive(true);
+        AudioSource.PlayClipAtPoint(swordSwoosh, sword.transform.position);
+    }
+
+    private void gunAttack()//gun attack coroutine
+    {
         Vector3 bulletPos = gun.transform.position -(gun.transform.forward*0.3f);
         GameObject bullet=Instantiate(ammo, bulletPos, gun.transform.rotation)as GameObject;
-        bullet.SetActive(true);
+        AudioSource.PlayClipAtPoint(gunShot, gun.transform.position);
+        bullet.SetActive(true);  
+    }
+
+    /// <summary>
+    /// Play player death animation and load game over
+    /// </summary>
+    public void playerDeath()
+    {
+        controller.SetBool("dead", true);
+        Destroy(GameObject.Find("ScurvyPirate"), 5f);
+        StartCoroutine(LoadGameover());
+    }
+
+    private IEnumerator LoadGameover()
+    {
         yield return new WaitForSeconds(5f);
-        gun.SetActive(false);
-        
+        foreach(GameObject zombie in GameObject.FindGameObjectsWithTag("enemy"))
+        {//destroy all zombies on gameover
+            Destroy(zombie);
+        }
+        SceneManager.LoadScene("gameOver");
     }
-
-    private void OnTriggerEnter(Collider Other)//if player collides with zombie, players takes damage
-    {
-        if (Other.gameObject.CompareTag("enemy"))
+    /*
+        private void OnCollisionEnter(Collision collision)
         {
-            if (Other.gameObject.GetComponent<Collider>().isTrigger == true)
-            {
-                curHealth -= Other.gameObject.GetComponent<zombieBehavior>().zombieDamageAmt;
-                GameObject.Find("playerHealth").GetComponent<Text>().text = curHealth + "/" + maxHealth;
-                if (curHealth <= 0)//play player death animation and load game over
-                {
-                    controller.SetBool("dead", true);
-                    Destroy(GameObject.Find("ScurvyPirate"), 1f);
-                    SceneManager.LoadScene("gameOver");
-                }
-            }
-           
+            Debug.Log("test");
         }
-
+        */
+   
+   
+    private void OnCollisionStay(Collision coll)
+    {
+        Debug.Log("in");
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
-
-    private void OnAnimatorIK()
+    private void OnCollisionExit(Collision coll)
     {
-      
-
-        if (gun.transform.Find("leftHandIKTarget")!=null)//left hand ik
-        {
-
-            controller.SetIKPosition(AvatarIKGoal.LeftHand, gun.transform.Find("leftHandIKTarget").transform.position);
-            controller.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
-            controller.SetIKRotation(AvatarIKGoal.LeftHand, gun.transform.Find("leftHandIKTarget").transform.rotation);
-            controller.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-        }
-        else
-        {
-            controller.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
-            controller.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0);
-        }
-
-        if (gun.transform.Find("leftElbowIKHint")!=null)//left elbow IK
-        {
-
-            controller.SetIKHintPosition(AvatarIKHint.LeftElbow, gun.transform.Find("leftElbowIKHint").transform.position);
-            controller.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1f);
-
-        }
-        else
-        {
-            controller.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 0);
-        }
-
-        if (sword.transform.Find("rightHandIKTarget")!=null)//right hand ik
-        {
-            controller.SetIKPosition(AvatarIKGoal.RightHand, sword.transform.Find("rightHandIKTarget").transform.position);
-            controller.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-            controller.SetIKRotation(AvatarIKGoal.RightHand, sword.transform.Find("rightHandIKTarget").transform.rotation);
-            controller.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
-        }
-        else
-        {
-            controller.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-
-        }
-
-        if (sword.transform.Find("rightElbowIKHint")!=null)//right elbow IK
-        {
-
-            controller.SetIKHintPosition(AvatarIKHint.LeftElbow, sword.transform.Find("rightElbowIKHint").transform.position);
-            controller.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1f);
-
-        }
-        else
-        {
-            controller.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 0);
-        }
-
-        if (transform.Find("headLookAtPosition")!=null)//head ik
-        {
-            controller.SetLookAtPosition(transform.Find("headLookAtPosition").transform.position);
-            controller.SetLookAtWeight(1f);
-        }
-
-        else
-        {
-            controller.SetLookAtWeight(0);
-        }
-
-
+        Debug.Log("out");
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
 }

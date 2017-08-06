@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class swordScript : MonoBehaviour {
-    private GameObject player;
+    private playerScript player;
 	// Use this for initialization
 	private void Start () {
-        player = GameObject.Find("player");
+        player = GameObject.Find("player").GetComponent<playerScript>();
     }
 	
 
@@ -18,9 +18,12 @@ public class swordScript : MonoBehaviour {
        
         if (Other.gameObject.CompareTag("enemy"))
         {
-            Other.gameObject.GetComponent<zombieBehavior>().currentZombieHP -= player.GetComponent<playerScript>().playerDamageAmt;
-            Other.gameObject.GetComponent<ZombieScreenSpaceUI>().enemyHealthText.text = Other.gameObject.GetComponent<zombieBehavior>().currentZombieHP +
-                "/" + Other.gameObject.GetComponent<zombieBehavior>().maximumZombieHP;
+            Other.gameObject.GetComponent<zombieBehavior>().currentZombieHP -= player.playerDamageAmt;
+            if (Other.gameObject.GetComponent<ZombieScreenSpaceUI>().enemyHealthText != null)
+            {
+                Other.gameObject.GetComponent<ZombieScreenSpaceUI>().enemyHealthText.text = Other.gameObject.GetComponent<zombieBehavior>().currentZombieHP +
+                    "/" + Other.gameObject.GetComponent<zombieBehavior>().maximumZombieHP;
+            }
             if (Other.gameObject.GetComponent<zombieBehavior>().currentZombieHP <= 0)//destroy zombie
             {
                 Other.gameObject.GetComponent<zombieBehavior>().zombieAniController.SetBool("death", true);

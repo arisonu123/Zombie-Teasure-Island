@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
+[RequireComponent(typeof(Animator))]
 public class zombieBehavior : MonoBehaviour {
     private Transform player;
-    private float speed;
-    private float damage;
-    private float maxHp;
+#pragma warning disable 649
+    [SerializeField]
+    private float speed=1;
+    [SerializeField]
+    private float damage=20;
+    [SerializeField]
+    private float maxHp=100;
     private float curHp;
     private float timeSpawn;
 
     private Animator controller;
-#pragma warning disable 649
     [SerializeField]
     [Header("Colliders for attack reconization")]
     private BoxCollider left;
@@ -33,6 +37,9 @@ public class zombieBehavior : MonoBehaviour {
     private GameObject drop;
     private Vector3 playerPos;
     private float targetDis;
+    private UnityEngine.AI.NavMeshAgent navMeshAgent;
+    private Animator animator;
+
     
     /// <summary>
     /// Gets the maximum zombie health
@@ -73,13 +80,15 @@ public class zombieBehavior : MonoBehaviour {
 
     // Use this for initialization
     private void Start () {
-     
         timeSpawn = Time.time;
         player = GameObject.Find("ScurvyPirate").transform;
         playerPos = player.position;
+        navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        navMeshAgent.enabled = false;
+        animator = GetComponent<Animator>();
         controller = this.gameObject.GetComponent<Animator>();
         left.enabled = false;
-        right.enabled = true;
+        right.enabled = false;
         //Make speed,damage,and hp/health the percent of levels base set in difficulty settings
         if (GameMaster._instance_.presetName == "Easy Settings" || GameMaster._instance_.presetName == "Normal Settings" ||
             GameMaster._instance_.presetName == "Hard Settings")//if default preset setting
@@ -155,15 +164,28 @@ public class zombieBehavior : MonoBehaviour {
             outOf100ChanceForGold = 5;
         }
         setPercents(outOf100ChanceForCopper, outOf100ChanceForSilver);//used to set percent numbers for spawning coins
+        navMeshAgent.speed = speed;
     }
 	
 	// Update is called once per frame
 	private void Update () {
-       
-        playerPos = player.position;
+        if (player != null)
+        {
+            playerPos = player.position;
+        }
+        if (navMeshAgent.enabled)
+        {
+            if (player != null)
+            {
+                navMeshAgent.SetDestination(playerPos);
+            }
+
+        }
+
         if (Time.time>= timeSpawn+2f)//wait 2 seconds before moving after spawning
         {
-            movToPlayer(speed);
+            navMeshAgent.enabled = true;
+            shouldAttack();
         }
 
     }
@@ -175,48 +197,26 @@ public class zombieBehavior : MonoBehaviour {
 
     }
 
-
-    private void movToPlayer(float speed)//move towards player
+    public void activateAtkCols()
     {
+        right.enabled = !right.enabled;
+        left.enabled = !left.enabled;
+    }
+
+    private void shouldAttack()//determine if AI should attack
+    {
+
         targetDis = Vector3.Distance(this.transform.position, playerPos);
-        if (targetDis > .4)//if problems return to 0.005
-        {
-            
-            if (right.enabled == true)
-            {
-                right.enabled = false;
-                left.enabled = false;
-            }
-            Vector3 moveDirection = new Vector3(playerPos.x, 0, playerPos.z);
-            //zombie graphic rotation
-            if (moveDirection != Vector3.zero)
-            {
-
-                Quaternion newRotation = Quaternion.LookRotation(playerPos - this.gameObject.transform.position);
-                    //Quaternion.LookRotation(moveDirection);
-                
-                this.gameObject.transform.rotation = Quaternion.Slerp(this.gameObject.transform.rotation, newRotation, Time.deltaTime * 8);
-
-            }
-            this.transform.position = Vector3.MoveTowards(this.transform.position, playerPos, speed * Time.deltaTime);
-            //transform.Translate(transform.right * playerPos.x * Time.deltaTime * speed);
-            //transform.Translate(transform.forward * playerPos.z * Time.deltaTime * speed);
-            
-            
+        if (targetDis > .5)//if problems return to 0.005
+        {     
             controller.SetBool("walk", true);
             controller.SetBool("attack", false);
-
         }
         else
         {
             controller.SetBool("walk", false);
             controller.SetBool("attack", true);
-            if (right.enabled == false)
-            {
-                right.enabled = true;
-                left.enabled = true;
-            }
-
+           
         }
        
     }
@@ -233,15 +233,15 @@ public class zombieBehavior : MonoBehaviour {
             coinChoice = UnityEngine.Random.Range(0, 101);
             if (coinChoice >= 0 && coinChoice <= outOf100ChanceForCopper)
             {//spawn bronze coin
-                drop=Instantiate(coins[0], gameObject.transform) as GameObject;
+                drop=Instantiate(coins[0], new Vector3(this.transform.position.x,this.transform.position.y+0.05f,this.transform.position.z),this.transform.rotation) as GameObject;
             }
             else if (coinChoice >= (outOf100ChanceForCopper + 1) && coinChoice <= outOf100ChanceForSilver)
             {//spawn silver coin
-                drop=Instantiate(coins[1], gameObject.transform) as GameObject;
+                drop=Instantiate(coins[1], new Vector3(this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z), this.transform.rotation) as GameObject;
             }
             else if (coinChoice >= (outOf100ChanceForSilver + 1) && coinChoice <= 101)
             {//spawn gold coin
-                drop=Instantiate(coins[2], gameObject.transform) as GameObject;
+                drop=Instantiate(coins[2], new Vector3(this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z), this.transform.rotation) as GameObject;
             }
             else
             {
@@ -254,11 +254,15 @@ public class zombieBehavior : MonoBehaviour {
     }
 
 
-    private void OnTrigerEnter(BoxCollider col)
+    private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "enemy")
+        if(player!=null && player.gameObject.GetComponentInChildren<Collider>() ==col)
         {
-
+            player.parent.gameObject.GetComponent<playerScript>().currentPlayerHealth -= damage;
+            if (player.parent.gameObject.GetComponent<playerScript>().currentPlayerHealth <= 0)
+            {
+                player.parent.gameObject.GetComponent<playerScript>().playerDeath();
+            }
         }
 
     }
