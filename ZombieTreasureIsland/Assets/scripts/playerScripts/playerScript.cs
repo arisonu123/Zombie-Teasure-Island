@@ -167,7 +167,7 @@ public class playerScript : MonoBehaviour {
         {
             Movement();
            
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S))
+            if (Input.GetAxisRaw("Horizontal")!=0 || Input.GetAxisRaw("Vertical")!=0)
             {
                controller.SetBool("walk", true);
             }
@@ -176,11 +176,11 @@ public class playerScript : MonoBehaviour {
                 controller.SetBool("walk", false);
             }
 
-            if (Input.GetMouseButtonDown(0))//attack with sword
+            if (Input.GetButtonDown("Fire1"))//attack with sword
             {
                 StartCoroutine("swordAttack");
             }
-            if (Input.GetMouseButtonDown(1))//attack with gun
+            if (Input.GetButtonDown("Fire2"))//attack with gun
             {
                 gunAttack();
             }
