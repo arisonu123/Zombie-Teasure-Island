@@ -25,7 +25,10 @@ public class buttonFunctions : MonoBehaviour
     [SerializeField]
     [Tooltip("The item info UI")]
     private GameObject[] itemInfo;
-
+    [SerializeField]
+    [Tooltip("The buttons for purchasing items")]
+    private Button[] purchaseButtons;
+    
     private GameObject buttonPressed;
     private GameObject sliderUsing;
 
@@ -42,8 +45,8 @@ public class buttonFunctions : MonoBehaviour
     [SerializeField]
     private GameObject[] slidersText;
 
-    private int[] zSlidersValue;
-    private int[] pSlidersValue;
+    private int[] zSlidersValue= new int[5];
+    private int[] pSlidersValue= new int[3];
 
     [Header("The player's doubloons text GameObject")]
     [SerializeField]
@@ -71,197 +74,7 @@ public class buttonFunctions : MonoBehaviour
         {
             GameObject.Find("currentLevel").GetComponent<Text>().text = "Level Selected: " + GameMaster._instance_.levelSelected;
         }
-        if (SceneManager.GetActiveScene().name == "difficultySettings")
-        {
-            zSlidersValue = new int[5];
-            zSlidersValue[0] = 100;
-            zSlidersValue[1] = 100;
-            zSlidersValue[2] = 100;
-            zSlidersValue[3] = 100;
-            zSlidersValue[4] = 100;
-            pSlidersValue = new int[3];
-            pSlidersValue[0] = 100;
-            pSlidersValue[1] = 100;
-            pSlidersValue[2] = 100;
-            if (GameObject.Find("settingsTitle").GetComponent<Text>().text.Contains("Custom"))//if customs settings screen set min and max for each slider
-            {
-                if (ZPlayerPrefs.minZombieHP.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[0].GetComponent<Slider>().minValue += ZPlayerPrefs.minZombieHP[level - 1];
-                        sliders[0].GetComponent<Slider>().value = (int)(sliders[0].GetComponent<Slider>().maxValue - (sliders[0].GetComponent<Slider>().maxValue - sliders[0].GetComponent<Slider>().minValue));
-                        zSlidersValue[0]= (int)(sliders[0].GetComponent<Slider>().maxValue - (sliders[0].GetComponent<Slider>().maxValue - sliders[0].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[0].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieHP[level - 1];
-                        sliders[0].GetComponent<Slider>().value = (int)(sliders[0].GetComponent<Slider>().maxValue - (sliders[0].GetComponent<Slider>().maxValue - sliders[0].GetComponent<Slider>().minValue));
-                        zSlidersValue[0] = (int)(sliders[0].GetComponent<Slider>().maxValue - (sliders[0].GetComponent<Slider>().maxValue - sliders[0].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.minZombieSpeed.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[1].GetComponent<Slider>().minValue += ZPlayerPrefs.minZombieSpeed[level];
-                        sliders[1].GetComponent<Slider>().value = (int)(sliders[1].GetComponent<Slider>().maxValue - (sliders[1].GetComponent<Slider>().maxValue - sliders[1].GetComponent<Slider>().minValue));
-                        zSlidersValue[1] = (int)(sliders[1].GetComponent<Slider>().maxValue - (sliders[1].GetComponent<Slider>().maxValue - sliders[1].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.maxZombieSpeed.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[1].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieSpeed[level - 1];
-                        sliders[1].GetComponent<Slider>().value = (int)(sliders[1].GetComponent<Slider>().maxValue - (sliders[1].GetComponent<Slider>().maxValue - sliders[1].GetComponent<Slider>().minValue));
-                        zSlidersValue[1] = (int)(sliders[1].GetComponent<Slider>().maxValue - (sliders[1].GetComponent<Slider>().maxValue - sliders[1].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.minTimeBetweenWaves.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[2].GetComponent<Slider>().minValue +=ZPlayerPrefs.minTimeBetweenWaves[level - 1];
-                        sliders[2].GetComponent<Slider>().value = (int)(sliders[2].GetComponent<Slider>().maxValue - (sliders[2].GetComponent<Slider>().maxValue - sliders[2].GetComponent<Slider>().minValue));
-                        zSlidersValue[2] = (int)(sliders[2].GetComponent<Slider>().maxValue - (sliders[2].GetComponent<Slider>().maxValue - sliders[2].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.maxTimeBetweenWaves.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[2].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxTimeBetweenWaves[level - 1];
-                        sliders[2].GetComponent<Slider>().value = (int)(sliders[2].GetComponent<Slider>().maxValue - (sliders[2].GetComponent<Slider>().maxValue - sliders[2].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.minZombieDamage.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[3].GetComponent<Slider>().minValue += ZPlayerPrefs.minZombieDamage[level - 1];
-                        sliders[3].GetComponent<Slider>().value = (int)(sliders[3].GetComponent<Slider>().maxValue - (sliders[3].GetComponent<Slider>().maxValue - sliders[3].GetComponent<Slider>().minValue));
-                        zSlidersValue[3] = (int)(sliders[3].GetComponent<Slider>().maxValue - (sliders[3].GetComponent<Slider>().maxValue - sliders[3].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.maxZombieDamage.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[3].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieDamage[level - 1];
-                        sliders[3].GetComponent<Slider>().value = (int)(sliders[3].GetComponent<Slider>().maxValue - (sliders[3].GetComponent<Slider>().maxValue - sliders[3].GetComponent<Slider>().minValue));
-                        zSlidersValue[3] = (int)(sliders[3].GetComponent<Slider>().maxValue - (sliders[3].GetComponent<Slider>().maxValue - sliders[3].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.minZombieNum.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[4].GetComponent<Slider>().minValue += ZPlayerPrefs.minZombieNum[level - 1];
-                        sliders[4].GetComponent<Slider>().value = (int)(sliders[4].GetComponent<Slider>().maxValue - (sliders[4].GetComponent<Slider>().maxValue - sliders[4].GetComponent<Slider>().minValue));
-                        zSlidersValue[4] = (int)(sliders[4].GetComponent<Slider>().maxValue - (sliders[4].GetComponent<Slider>().maxValue - sliders[4].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.maxZombieNum.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[4].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieNum[level - 1];
-                        sliders[4].GetComponent<Slider>().value = (int)(sliders[4].GetComponent<Slider>().maxValue - (sliders[4].GetComponent<Slider>().maxValue - sliders[4].GetComponent<Slider>().minValue));
-                        zSlidersValue[4] = (int)(sliders[4].GetComponent<Slider>().maxValue - (sliders[4].GetComponent<Slider>().maxValue - sliders[4].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.minPlayerHP.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[5].GetComponent<Slider>().minValue += ZPlayerPrefs.minPlayerHP[level - 1];
-                        sliders[5].GetComponent<Slider>().value = (int)(sliders[5].GetComponent<Slider>().maxValue - (sliders[5].GetComponent<Slider>().maxValue - sliders[5].GetComponent<Slider>().minValue));
-                        pSlidersValue[0] = (int)(sliders[5].GetComponent<Slider>().maxValue - (sliders[5].GetComponent<Slider>().maxValue - sliders[5].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.maxPlayerHP.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[5].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerHP[level - 1];
-                        sliders[5].GetComponent<Slider>().value = (int)(sliders[5].GetComponent<Slider>().maxValue - (sliders[5].GetComponent<Slider>().maxValue - sliders[5].GetComponent<Slider>().minValue));
-                        pSlidersValue[0] = (int)(sliders[5].GetComponent<Slider>().maxValue - (sliders[5].GetComponent<Slider>().maxValue - sliders[5].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.minPlayerSpeed.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[6].GetComponent<Slider>().minValue += ZPlayerPrefs.minPlayerSpeed[level - 1];
-                        sliders[6].GetComponent<Slider>().value = (int)(sliders[6].GetComponent<Slider>().maxValue - (sliders[6].GetComponent<Slider>().maxValue - sliders[6].GetComponent<Slider>().minValue));
-                        pSlidersValue[1] = (int)(sliders[6].GetComponent<Slider>().maxValue - (sliders[6].GetComponent<Slider>().maxValue - sliders[6].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.maxPlayerSpeed.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[6].GetComponent<Slider>().minValue += ZPlayerPrefs.maxPlayerSpeed[level - 1];
-                        sliders[6].GetComponent<Slider>().value = (int)(sliders[6].GetComponent<Slider>().maxValue - (sliders[6].GetComponent<Slider>().maxValue - sliders[6].GetComponent<Slider>().minValue));
-                        pSlidersValue[1] = (int)(sliders[6].GetComponent<Slider>().maxValue - (sliders[6].GetComponent<Slider>().maxValue - sliders[6].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.minPlayerDamage.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[7].GetComponent<Slider>().minValue += ZPlayerPrefs.minPlayerDamage[level - 1];
-                        sliders[7].GetComponent<Slider>().value = (int)(sliders[7].GetComponent<Slider>().maxValue - (sliders[7].GetComponent<Slider>().maxValue - sliders[7].GetComponent<Slider>().minValue));
-                        pSlidersValue[2] = (int)(sliders[7].GetComponent<Slider>().maxValue - (sliders[7].GetComponent<Slider>().maxValue - sliders[7].GetComponent<Slider>().minValue));
-                    }
-                }
-                if (ZPlayerPrefs.maxPlayerDamage.Length != 0)
-                {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
-                    if (level != 0)
-                    {
-                        sliders[7].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerDamage[level - 1];
-                        sliders[7].GetComponent<Slider>().value = (int)(sliders[7].GetComponent<Slider>().maxValue - (sliders[7].GetComponent<Slider>().maxValue - sliders[7].GetComponent<Slider>().minValue));
-                        pSlidersValue[2] = (int)(sliders[7].GetComponent<Slider>().maxValue - (sliders[7].GetComponent<Slider>().maxValue - sliders[7].GetComponent<Slider>().minValue));
-                    }
-                }
-            }
-        }
+        
         if (coinsText != null)
         {
             coinsTextNum = coinsText.GetComponent<Text>();
@@ -337,11 +150,13 @@ public class buttonFunctions : MonoBehaviour
             }
             if (presetButton.gameObject.name == "Custom1" && presetButton != null)
             {
+                int level;
+                int.TryParse(GameMaster._instance_.levelSelected, out level);
+
                 Debug.Log("setting variables");
-                if (ZPlayerPrefs.custom1Settings.Count >= 1 && GameMaster._instance_.levelSelected == "1")//if previously saved preset for custom 1 level 1
+                if (ZPlayerPrefs.custom1Settings.Count >=level && level != 0)//if previously saved preset for custom 1 for this level
                 {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
+                    
                     if (level != 0)
                     {
                         for (int i = 0; i < 8; i++)//set all settings based off of save data for custom settings
@@ -361,7 +176,7 @@ public class buttonFunctions : MonoBehaviour
                         GameObject.Find("modifyButton(2)").SetActive(false);
                     }
                 }
-                //TODO: Add more ifs for additional levels
+                
                 else//if no save data load to allow player to set settings
                 {
                     loadDifSettings();
@@ -369,10 +184,11 @@ public class buttonFunctions : MonoBehaviour
             }
             else if (presetButton.gameObject.name == "Custom2" && presetButton != null)
             {
-                if (ZPlayerPrefs.custom2Settings.Count >= 1 && GameMaster._instance_.levelSelected == "1")//if previously saved preset for custom 2 level 1
+                int level;
+                int.TryParse(GameMaster._instance_.levelSelected, out level);
+                if (ZPlayerPrefs.custom2Settings.Count >= level && level != 0)//if previously saved preset for custom 2 for this level
                 {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
+                    
                     if (level != 0)
                     {
                         Debug.Log("setting variables");
@@ -400,10 +216,11 @@ public class buttonFunctions : MonoBehaviour
             }
             else if (presetButton.gameObject.name == "Custom3" && presetButton != null)
             {
-                if (ZPlayerPrefs.custom3Settings.Count >= 1 && GameMaster._instance_.levelSelected == "1")//if previously saved preset for custom 3 level 1
+                int level;
+                int.TryParse(GameMaster._instance_.levelSelected, out level);
+                if (ZPlayerPrefs.custom3Settings.Count >= level && level != 0)//if previously saved preset for custom 3 for this level
                 {
-                    int level;
-                    int.TryParse(GameMaster._instance_.levelSelected, out level);
+                    
                     if (level != 0)
                     {
                         for (int i = 0; i < 8; i++)//set all settings based off of save data for custom settings
@@ -457,6 +274,19 @@ public class buttonFunctions : MonoBehaviour
         if (GameMaster._instance_.levelSelected == null || GameMaster._instance_.levelSelected == "")
         {
             GameMaster._instance_.levelSelected = "1";
+        }
+        if(SceneManager.GetActiveScene().name == "difficultySelection")
+        {
+            string DifChosenText= GameObject.Find("selectedDifLevel").GetComponent<Text>().text;
+            if(DifChosenText.Length <= (DifChosenText.Substring(DifChosenText.IndexOf("Currently"), DifChosenText.IndexOf(":")).Length))
+            {
+                GameMaster._instance_.presetName = "Normal Settings";//if player presses start without making a selection, default to normal
+                for (int i = 0; i < 8; i++)//all variables 100 percent of base
+                {
+                    GameMaster._instance_.settingNumbers[i] = 1f;
+                }
+
+            }
         }
         SceneManager.LoadScene((GameMaster._instance_.levelSelected));
     }
@@ -536,6 +366,13 @@ public class buttonFunctions : MonoBehaviour
     /// </summary>
     public void loadDifScreen()
     {
+        int level;
+        int.TryParse(GameMaster._instance_.levelSelected, out level);
+        if (level != 0)
+        {
+            level--;
+            GameMaster._instance_.AreSliderValuesSet[level] = false;
+        }
         SceneManager.LoadScene("difficultySelection");
 
     }
@@ -564,18 +401,57 @@ public class buttonFunctions : MonoBehaviour
 
         {
             //disable item 3
-            items[item3].GetComponent<Image>().enabled = false;
             itemInfo[item3].GetComponent<Text>().enabled = false;
+            items[item3].GetComponent<Image>().enabled = false;
+
+            //make sure purchase buttons are right
+            items[item2].GetComponent<itemInfo>().buttonForPurchasing = purchaseButtons[2];
+            items[item1].GetComponent<itemInfo>().buttonForPurchasing = purchaseButtons[1];
+            items[item1 - 1].GetComponent<itemInfo>().buttonForPurchasing = purchaseButtons[0];
 
             //item 2 becomes item 3
             itemInfo[item2].transform.position = item3InfoPos;
             items[item2].transform.position = item3Pos;
+           // items[item2].GetComponent<itemInfo>().buttonForPurchasing = items[item3].GetComponent<itemInfo>().buttonForPurchasing;
+            if (items[item2].GetComponent<itemInfo>().isSold)
+            {
+                items[item2].GetComponent<itemInfo>().buttonForPurchasing.enabled = false;
+                items[item2].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Sold";
+            }
+            else
+            {
+                items[item2].GetComponent<itemInfo>().buttonForPurchasing.enabled = true;
+                items[item2].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Buy";
+            }
             //item 1 becomes item 2
-            items[item1].transform.position = item2Pos;
             itemInfo[item1].transform.position = item2InfoPos;
+            items[item1].transform.position = item2Pos;
+            //items[item1].GetComponent<itemInfo>().buttonForPurchasing = items[item2].GetComponent<itemInfo>().buttonForPurchasing;
+            if (items[item1].GetComponent<itemInfo>().isSold)
+            {
+                items[item1].GetComponent<itemInfo>().buttonForPurchasing.enabled = false;
+                items[item1].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Sold";
+            }
+            else
+            {
+                items[item1].GetComponent<itemInfo>().buttonForPurchasing.enabled = true;
+                items[item1].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Buy";
+            }
             //item 1 -1 becomes item 1
             items[item1 - 1].GetComponent<Image>().enabled = true;
             itemInfo[item1 - 1].GetComponent<Text>().enabled = true;
+            //items[item1 - 1].GetComponent<itemInfo>().buttonForPurchasing = items[item1].GetComponent<itemInfo>().buttonForPurchasing;
+            if (items[item1 -1].GetComponent<itemInfo>().isSold)
+            {
+                items[item1 - 1].GetComponent<itemInfo>().buttonForPurchasing.enabled = false;
+                items[item1 - 1].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Sold";
+            }
+            else
+            {
+                items[item1 - 1].GetComponent<itemInfo>().buttonForPurchasing.enabled = true;
+                items[item1 - 1].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Buy";
+            }
+
             int temp1 = item1;
             int temp2 = item2;
             int temp3 = item3;
@@ -612,15 +488,54 @@ public class buttonFunctions : MonoBehaviour
             //disable item 1
             items[item1].GetComponent<Image>().enabled = false;
             itemInfo[item1].GetComponent<Text>().enabled = false;
+
+            //make sure purchase buttons are right
+            items[item2].GetComponent<itemInfo>().buttonForPurchasing = purchaseButtons[0];
+            items[item3].GetComponent<itemInfo>().buttonForPurchasing = purchaseButtons[1];
+            items[item3 + 1].GetComponent<itemInfo>().buttonForPurchasing = purchaseButtons[2];
+
             //move item 2 to item 1 position
             items[item2].transform.position = item1Pos;
             itemInfo[item2].transform.position = item1InfoPos;
+           // items[item2].GetComponent<itemInfo>().buttonForPurchasing = items[item1].GetComponent<itemInfo>().buttonForPurchasing;
+            if (items[item2].GetComponent<itemInfo>().isSold)
+            {
+                items[item2].GetComponent<itemInfo>().buttonForPurchasing.enabled = false;
+                items[item2].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Sold";
+            }
+            else
+            {
+                items[item2].GetComponent<itemInfo>().buttonForPurchasing.enabled = true;
+                items[item2].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Buy";
+            }
             //move 3 to item 2 position
             itemInfo[item3].transform.position = item2InfoPos;
             items[item3].transform.position = item2Pos;
+           // items[item3].GetComponent<itemInfo>().buttonForPurchasing = items[item2].GetComponent<itemInfo>().buttonForPurchasing;
+            if (items[item3].GetComponent<itemInfo>().isSold)
+            {
+                items[item3].GetComponent<itemInfo>().buttonForPurchasing.enabled = false;
+                items[item3].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Sold";
+            }
+            else
+            {
+                items[item3].GetComponent<itemInfo>().buttonForPurchasing.enabled = true;
+                items[item3].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Buy";
+            }
             //enable item 3+1 in item 3's origional spot
             items[item3 + 1].GetComponent<Image>().enabled = true;
             itemInfo[item3 + 1].GetComponent<Text>().enabled = true;
+          //  items[item3 + 1].GetComponent<itemInfo>().buttonForPurchasing = items[item3].GetComponent<itemInfo>().buttonForPurchasing;
+            if (items[item3 + 1].GetComponent<itemInfo>().isSold)
+            {
+                items[item3 + 1].GetComponent<itemInfo>().buttonForPurchasing.enabled = false;
+                items[item3 + 1].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Sold";
+            }
+            else
+            {
+                items[item3 + 1].GetComponent<itemInfo>().buttonForPurchasing.enabled = true;
+                items[item3 + 1].GetComponent<itemInfo>().buttonForPurchasing.GetComponentInChildren<Text>().text = "Buy";
+            }
             //item 4 is now item 3
             //item 3 is now item3+1 in array on screen
             int temp1 = item1;
@@ -720,21 +635,95 @@ public class buttonFunctions : MonoBehaviour
     public void enableSettings()
     {
         buttonPressed=EventSystem.current.currentSelectedGameObject;//if mouse is hitting object
-        if (buttonPressed.transform.gameObject.name == "zombieButton")
+        if (SceneManager.GetActiveScene().name == "difficultySettings")
         {
-             
-           playerSettings.SetActive(false);
-            
-           zombieSettings.SetActive(true);
-           if (SceneManager.GetActiveScene().name == "difficultySettings")
+            int levelNum;
+            int.TryParse(GameMaster._instance_.levelSelected, out levelNum);
+            levelNum--;
+
+            if (!GameMaster._instance_.AreSliderValuesSet[levelNum])
             {
-                int levelNum;
-                int.TryParse(GameMaster._instance_.levelSelected, out levelNum);
-                levelNum--;
+                //set min and max of sliders
+                if (ZPlayerPrefs.minZombieHP.Length >= levelNum + 1)
+                {
+                    sliders[0].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieHP[levelNum];
+                }
+                if (ZPlayerPrefs.maxZombieHP.Length >= levelNum + 1)
+                {
+                    sliders[0].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieHP[levelNum];
+                }
+
+                if (ZPlayerPrefs.minTimeBetweenWaves.Length >= levelNum + 1)
+                {
+                    sliders[2].GetComponent<Slider>().minValue -= ZPlayerPrefs.minTimeBetweenWaves[levelNum];
+                }
+                if (ZPlayerPrefs.maxTimeBetweenWaves.Length >= levelNum + 1)
+                {
+                    sliders[2].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxTimeBetweenWaves[levelNum];
+                }
+
+                if (ZPlayerPrefs.minZombieDamage.Length >= levelNum + 1)
+                {
+                    sliders[3].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieDamage[levelNum];
+                }
+                if (ZPlayerPrefs.maxZombieDamage.Length >= levelNum + 1)
+                {
+                    sliders[3].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieDamage[levelNum];
+                }
+
+                if (ZPlayerPrefs.minZombieNum.Length >= levelNum + 1)
+                {
+                    sliders[4].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieNum[levelNum];
+                }
+                if (ZPlayerPrefs.maxZombieHP.Length >= levelNum + 1)
+                {
+                    sliders[4].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieNum[levelNum];
+                }
+
+
+                if (ZPlayerPrefs.minPlayerHP.Length >= levelNum + 1)
+                {
+                    sliders[5].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerHP[levelNum];
+                }
+                if (ZPlayerPrefs.maxPlayerHP.Length >= levelNum + 1)
+                {
+                    sliders[5].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerHP[levelNum];
+                }
+                if (ZPlayerPrefs.minPlayerSpeed.Length >= levelNum + 1)
+                {
+                    sliders[6].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerSpeed[levelNum];
+                }
+                if (ZPlayerPrefs.maxPlayerSpeed.Length >= levelNum + 1)
+                {
+                    sliders[6].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerSpeed[levelNum];
+                }
+                if (ZPlayerPrefs.minPlayerDamage.Length >= levelNum + 1)
+                {
+                    sliders[7].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerDamage[levelNum];
+                }
+                if (ZPlayerPrefs.maxPlayerDamage.Length >= levelNum + 1)
+                {
+                    sliders[7].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerDamage[levelNum];
+                }
+
+                GameMaster._instance_.AreSliderValuesSet[levelNum] = true;
+            }
+
+
+            if (buttonPressed.transform.gameObject.name == "zombieButton")
+            {
+                
                 Debug.Log(levelNum + " level");
                 Debug.Log(GameMaster._instance_.levelSelected+" is selected level");
+
+                playerSettings.SetActive(false);
+
+                zombieSettings.SetActive(true);
+                
+
+
                 if (GameMaster._instance_.presetName == "Custom (1) Settings" &&
-                    ZPlayerPrefs.custom1Settings.Count >= 1 &&
+                    ZPlayerPrefs.custom1Settings.Count > levelNum &&
                     ZPlayerPrefs.custom1Settings[levelNum]
                        != null
                     )//load custom 1 settings for level if they exist
@@ -742,14 +731,14 @@ public class buttonFunctions : MonoBehaviour
                     loadPreset();
                 }
                 else if (GameMaster._instance_.presetName == "Custom (2) Settings" &&
-                    ZPlayerPrefs.custom2Settings.Count >= 1 &&
+                    ZPlayerPrefs.custom2Settings.Count > levelNum &&
                      ZPlayerPrefs.custom2Settings[levelNum]
                       != null)//load custom 2 settings for level if they exist
                 {
                     loadPreset();
                 }
                 else if (GameMaster._instance_.presetName == "Custom (3) Settings" &&
-                   ZPlayerPrefs.custom3Settings.Count >= 1 &&
+                   ZPlayerPrefs.custom3Settings.Count > levelNum &&
                     ZPlayerPrefs.custom3Settings[levelNum]
                      != null)//load custom 3 settings for level if they exist
                 {
@@ -757,20 +746,15 @@ public class buttonFunctions : MonoBehaviour
                 }
                
             }
-        }
-        else if (buttonPressed.transform.gameObject.name == "playerButton")
-        {
+           
+            else if (buttonPressed.transform.gameObject.name == "playerButton")
+            {               
+                zombieSettings.SetActive(false);
 
-            zombieSettings.SetActive(false);
+                playerSettings.SetActive(true);            
 
-            playerSettings.SetActive(true);
-            if (SceneManager.GetActiveScene().name == "difficultySettings")
-            {
-                int levelNum;
-                int.TryParse(GameMaster._instance_.levelSelected, out levelNum);
-                levelNum--;
                 if (GameMaster._instance_.presetName == "Custom (1) Settings" &&
-                    ZPlayerPrefs.custom1Settings.Count >= 1 &&
+                    ZPlayerPrefs.custom1Settings.Count > levelNum &&
                     ZPlayerPrefs.custom1Settings[levelNum]
                        != null
                     )//load custom 1 settings for level if they exist
@@ -778,32 +762,20 @@ public class buttonFunctions : MonoBehaviour
                     loadPreset();
                 }
                 else if (GameMaster._instance_.presetName == "Custom (2) Settings" &&
-                    ZPlayerPrefs.custom2Settings.Count >= 1 &&
+                    ZPlayerPrefs.custom2Settings.Count > levelNum &&
                      ZPlayerPrefs.custom2Settings[levelNum]
                       != null)//load custom 2 settings for level if they exist
                 {
                     loadPreset();
                 }
                 else if (GameMaster._instance_.presetName == "Custom (3) Settings" &&
-                    ZPlayerPrefs.custom3Settings.Count >= 1 &&
+                    ZPlayerPrefs.custom3Settings.Count > levelNum &&
                     ZPlayerPrefs.custom3Settings[levelNum]
                      != null)//load custom 3 settings for level if they exist
                 {
                     loadPreset();
                 }
-                /*else
-                {//if settings do not exist display default
-                    zSlidersValue = new int[5];
-                    zSlidersValue[0] = 100;
-                    zSlidersValue[1] = 100;
-                    zSlidersValue[2] = 100;
-                    zSlidersValue[3] = 100;
-                    zSlidersValue[4] = 100;
-                    pSlidersValue = new int[3];
-                    pSlidersValue[0] = 100;
-                    pSlidersValue[1] = 100;
-                    pSlidersValue[2] = 100;
-                }*/
+               
             }
         }
           
@@ -887,88 +859,152 @@ public class buttonFunctions : MonoBehaviour
     {
         GameObject.Find("savedText").GetComponent<Text>().enabled = true;
         Invoke("disableSaveMsg", 2f);
-        if (GameMaster._instance_.presetName=="Custom (1) Settings")//if custom 1
+        if (GameMaster._instance_.presetName == "Custom (1) Settings")//if custom 1
         {
-            if (GameMaster._instance_.levelSelected == "1")//if level 1 difficulty setting
+            int level = -1;
+            int.TryParse(GameMaster._instance_.levelSelected, out level);
+            level--;
+            if (ZPlayerPrefs.custom1Settings.Count < level + 1)
             {
-                if (ZPlayerPrefs.custom1Settings.Count<1)
+                while (ZPlayerPrefs.custom1Settings.Count < level + 1)
                 {
                     int[] values = new int[8];
                     ZPlayerPrefs.custom1Settings.Add(values);
                 }
-                ZPlayerPrefs.custom1Settings[0][0] = zSlidersValue[0];
-                ZPlayerPrefs.SetInt("lvl1Custom1ZHp", zSlidersValue[0]);
-                ZPlayerPrefs.custom1Settings[0][1] = zSlidersValue[1];
-                ZPlayerPrefs.SetInt("lvl1Custom1ZSpd", zSlidersValue[1]);
-                ZPlayerPrefs.custom1Settings[0][2] = zSlidersValue[2];
-                ZPlayerPrefs.SetInt("lvl1Custom1ZTBW", zSlidersValue[2]);
-                ZPlayerPrefs.custom1Settings[0][3] = zSlidersValue[3];
-                ZPlayerPrefs.SetInt("lvl1Custom1ZD", zSlidersValue[3]);
-                ZPlayerPrefs.custom1Settings[0][4] = zSlidersValue[4];
-                ZPlayerPrefs.SetInt("lvl1Custom1ZNInW", zSlidersValue[4]);
-                ZPlayerPrefs.custom1Settings[0][5] = pSlidersValue[0];
-                ZPlayerPrefs.SetInt("lvl1Custom1PHp", pSlidersValue[0]);
-                ZPlayerPrefs.custom1Settings[0][6] = pSlidersValue[1];
-                ZPlayerPrefs.SetInt("lvl1Custom1PSpd", pSlidersValue[1]);
-                ZPlayerPrefs.custom1Settings[0][7] = pSlidersValue[2];
-                ZPlayerPrefs.SetInt("lvl1Custom1PD", pSlidersValue[2]);
             }
-            //TODO:Add more ifs for each level
-           
+
+            //Make sure that unchanged slider values get set to 100
+            for(int i = 0; i < zSlidersValue.Length; i++)
+            {
+                if (zSlidersValue[i] == 0)
+                {
+                    zSlidersValue[i] = 100;
+                }
+            }
+            for (int i = 0; i < pSlidersValue.Length; i++)
+            {
+                if (pSlidersValue[i] == 0)
+                {
+                    pSlidersValue[i] = 100;
+                }
+            }
+
+            ZPlayerPrefs.custom1Settings[level][0] = zSlidersValue[0];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom1ZHp", zSlidersValue[0]);
+            ZPlayerPrefs.custom1Settings[level][1] = zSlidersValue[1];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom1ZSpd", zSlidersValue[1]);
+            ZPlayerPrefs.custom1Settings[level][2] = zSlidersValue[2];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom1ZTBW", zSlidersValue[2]);
+            ZPlayerPrefs.custom1Settings[level][3] = zSlidersValue[3];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom1ZD", zSlidersValue[3]);
+            ZPlayerPrefs.custom1Settings[level][4] = zSlidersValue[4];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom1ZNInW", zSlidersValue[4]);
+            ZPlayerPrefs.custom1Settings[level][5] = pSlidersValue[0];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom1PHp", pSlidersValue[0]);
+            ZPlayerPrefs.custom1Settings[level][6] = pSlidersValue[1];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom1PSpd", pSlidersValue[1]);
+            ZPlayerPrefs.custom1Settings[level][7] = pSlidersValue[2];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom1PD", pSlidersValue[2]);
+
+
         }
         else if (GameMaster._instance_.presetName == "Custom (2) Settings")//if custom 2
         {
-            if (GameMaster._instance_.levelSelected == "1")//if level one difficulty settings
+            int level = -1;
+            int.TryParse(GameMaster._instance_.levelSelected, out level);
+            level--;
+            if (ZPlayerPrefs.custom2Settings.Count < level + 1)
             {
-                if (ZPlayerPrefs.custom2Settings.Count<1)
+                while (ZPlayerPrefs.custom2Settings.Count < level + 1)
                 {
                     int[] values = new int[8];
                     ZPlayerPrefs.custom2Settings.Add(values);
                 }
-                ZPlayerPrefs.custom2Settings[0][0] = zSlidersValue[0];
-                ZPlayerPrefs.SetInt("lvl1Custom2ZHp", zSlidersValue[0]);
-                ZPlayerPrefs.custom2Settings[0][1] = zSlidersValue[1];
-                ZPlayerPrefs.SetInt("lvl1Custom2ZSpd", zSlidersValue[1]);
-                ZPlayerPrefs.custom2Settings[0][2] = zSlidersValue[2];
-                ZPlayerPrefs.SetInt("lvl1Custom2ZTBW", zSlidersValue[2]);
-                ZPlayerPrefs.custom2Settings[0][3] = zSlidersValue[3];
-                ZPlayerPrefs.SetInt("lvl1Custom2ZD", zSlidersValue[3]);
-                ZPlayerPrefs.custom2Settings[0][4] = zSlidersValue[4];
-                ZPlayerPrefs.SetInt("lvl1Custom2ZNInW", zSlidersValue[4]);
-                ZPlayerPrefs.custom2Settings[0][5] = pSlidersValue[0];
-                ZPlayerPrefs.SetInt("lvl1Custom2PHp", pSlidersValue[0]);
-                ZPlayerPrefs.custom2Settings[0][6] = pSlidersValue[1];
-                ZPlayerPrefs.SetInt("lvl1Custom2PSpd", pSlidersValue[1]);
-                ZPlayerPrefs.custom2Settings[0][7] = pSlidersValue[2];
-                ZPlayerPrefs.SetInt("lvl1Custom2PD", pSlidersValue[2]);
             }
-        }
-        if (GameMaster._instance_.presetName == "Custom (3) Settings")//if custom 3
-        {
-            if (GameMaster._instance_.levelSelected == "1")//if level one difficulty settings 
+
+
+            //Make sure that unchanged slider values get set to 100
+            for (int i = 0; i < zSlidersValue.Length; i++)
             {
-                if (ZPlayerPrefs.custom3Settings.Count<1)
+                if (zSlidersValue[i] == 0)
+                {
+                    zSlidersValue[i] = 100;
+                }
+            }
+            for (int i = 0; i < pSlidersValue.Length; i++)
+            {
+                if (pSlidersValue[i] == 0)
+                {
+                    pSlidersValue[i] = 100;
+                }
+            }
+
+            ZPlayerPrefs.custom2Settings[level][0] = zSlidersValue[0];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom2ZHp", zSlidersValue[0]);
+            ZPlayerPrefs.custom2Settings[level][1] = zSlidersValue[1];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom2ZSpd", zSlidersValue[1]);
+            ZPlayerPrefs.custom2Settings[level][2] = zSlidersValue[2];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom2ZTBW", zSlidersValue[2]);
+            ZPlayerPrefs.custom2Settings[level][3] = zSlidersValue[3];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom2ZD", zSlidersValue[3]);
+            ZPlayerPrefs.custom2Settings[level][4] = zSlidersValue[4];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom2ZNInW", zSlidersValue[4]);
+            ZPlayerPrefs.custom2Settings[level][5] = pSlidersValue[0];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom2PHp", pSlidersValue[0]);
+            ZPlayerPrefs.custom2Settings[level][6] = pSlidersValue[1];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom2PSpd", pSlidersValue[1]);
+            ZPlayerPrefs.custom2Settings[level][7] = pSlidersValue[2];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom2PD", pSlidersValue[2]);
+
+        }
+        else if (GameMaster._instance_.presetName == "Custom (3) Settings")//if custom 3
+        {
+            int level = -1;
+            int.TryParse(GameMaster._instance_.levelSelected, out level);
+            level--;
+            if (ZPlayerPrefs.custom3Settings.Count < level + 1)
+            {
+                while (ZPlayerPrefs.custom3Settings.Count < level + 1)
                 {
                     int[] values = new int[8];
                     ZPlayerPrefs.custom3Settings.Add(values);
                 }
-                ZPlayerPrefs.custom3Settings[0][0] = zSlidersValue[0];
-                ZPlayerPrefs.SetInt("lvl1Custom3ZHp", zSlidersValue[0]);
-                ZPlayerPrefs.custom3Settings[0][1] = zSlidersValue[1];
-                ZPlayerPrefs.SetInt("lvl1Custom3ZSpd", zSlidersValue[1]);
-                ZPlayerPrefs.custom3Settings[0][2] = zSlidersValue[2];
-                ZPlayerPrefs.SetInt("lvl1Custom3ZTBW", zSlidersValue[2]);
-                ZPlayerPrefs.custom3Settings[0][3] = zSlidersValue[3];
-                ZPlayerPrefs.SetInt("lvl1Custom3ZD", zSlidersValue[3]);
-                ZPlayerPrefs.custom3Settings[0][4] = zSlidersValue[4];
-                ZPlayerPrefs.SetInt("lvl1Custom3ZNInW", zSlidersValue[4]);
-                ZPlayerPrefs.custom3Settings[0][5] = pSlidersValue[0];
-                ZPlayerPrefs.SetInt("lvl1Custom3PHp", pSlidersValue[0]);
-                ZPlayerPrefs.custom3Settings[0][6] = pSlidersValue[1];
-                ZPlayerPrefs.SetInt("lvl1Custom3PSpd", pSlidersValue[1]);
-                ZPlayerPrefs.custom3Settings[0][7] = pSlidersValue[2];
-                ZPlayerPrefs.SetInt("lvl1Custom3PD", pSlidersValue[2]);
             }
+
+
+            //Make sure that unchanged slider values get set to 100
+            for (int i = 0; i < zSlidersValue.Length; i++)
+            {
+                if (zSlidersValue[i] == 0)
+                {
+                    zSlidersValue[i] = 100;
+                }
+            }
+            for (int i = 0; i < pSlidersValue.Length; i++)
+            {
+                if (pSlidersValue[i] == 0)
+                {
+                    pSlidersValue[i] = 100;
+                }
+            }
+
+            ZPlayerPrefs.custom3Settings[level][0] = zSlidersValue[0];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom3ZHp", zSlidersValue[0]);
+            ZPlayerPrefs.custom3Settings[level][1] = zSlidersValue[1];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom3ZSpd", zSlidersValue[1]);
+            ZPlayerPrefs.custom3Settings[level][2] = zSlidersValue[2];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom3ZTBW", zSlidersValue[2]);
+            ZPlayerPrefs.custom3Settings[level][3] = zSlidersValue[3];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom3ZD", zSlidersValue[3]);
+            ZPlayerPrefs.custom3Settings[level][4] = zSlidersValue[4];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom3ZNInW", zSlidersValue[4]);
+            ZPlayerPrefs.custom3Settings[0][5] = pSlidersValue[0];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom3PHp", pSlidersValue[0]);
+            ZPlayerPrefs.custom3Settings[level][6] = pSlidersValue[1];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom3PSpd", pSlidersValue[1]);
+            ZPlayerPrefs.custom3Settings[level][7] = pSlidersValue[2];
+            ZPlayerPrefs.SetInt("lvl" + (level + 1) + "Custom3PD", pSlidersValue[2]);
+
         }
     }
 
@@ -987,62 +1023,27 @@ public class buttonFunctions : MonoBehaviour
             {
                 zSlidersValue[0] = ZPlayerPrefs.custom1Settings[level][0];
                 sliders[0].GetComponent<Slider>().value = zSlidersValue[0];
-                if (ZPlayerPrefs.minZombieHP.Length >= level + 1)
-                {
-                    sliders[0].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieHP[level];
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length >= level + 1)
-                {
-                    sliders[0].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieHP[level];
-                }
+               
                 Text slider1Num = slidersText[0].gameObject.GetComponent<Text>();
                 slider1Num.text = sliders[0].GetComponent<Slider>().value.ToString();
                 zSlidersValue[1] = ZPlayerPrefs.custom1Settings[level][1];
                 sliders[1].GetComponent<Slider>().value = zSlidersValue[1];
-                if (ZPlayerPrefs.minZombieSpeed.Length >= level + 1)
-                {
-                    sliders[1].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieSpeed[level];
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length >= level + 1)
-                {
-                    sliders[1].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieSpeed[level];
-                }
+
                 Text slider2Num = slidersText[1].gameObject.GetComponent<Text>();
                 slider2Num.text = sliders[1].GetComponent<Slider>().value.ToString();
                 zSlidersValue[2] = ZPlayerPrefs.custom1Settings[level][2];
                 sliders[2].GetComponent<Slider>().value = zSlidersValue[2];
-                if (ZPlayerPrefs.minTimeBetweenWaves.Length >= level + 1)
-                {
-                    sliders[2].GetComponent<Slider>().minValue -= ZPlayerPrefs.minTimeBetweenWaves[level];
-                }
-                if (ZPlayerPrefs.maxTimeBetweenWaves.Length >= level + 1)
-                {
-                    sliders[2].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxTimeBetweenWaves[level];
-                }
+                
                 Text slider3Num = slidersText[2].gameObject.GetComponent<Text>();
                 slider3Num.text = sliders[2].GetComponent<Slider>().value.ToString();
                 zSlidersValue[3] = ZPlayerPrefs.custom1Settings[level][3];
                 sliders[3].GetComponent<Slider>().value = zSlidersValue[3];
-                if (ZPlayerPrefs.minZombieDamage.Length >= level + 1)
-                {
-                    sliders[3].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieDamage[level];
-                }
-                if (ZPlayerPrefs.maxZombieDamage.Length >= level + 1)
-                {
-                    sliders[3].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieDamage[level];
-                }
+               
                 Text slider4Num = slidersText[3].gameObject.GetComponent<Text>();
                 slider4Num.text = sliders[3].GetComponent<Slider>().value.ToString();
                 zSlidersValue[4] = ZPlayerPrefs.custom1Settings[level][4];
                 sliders[4].GetComponent<Slider>().value = zSlidersValue[4];
-                if (ZPlayerPrefs.minZombieNum.Length >= level + 1)
-                {
-                    sliders[4].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieNum[level];
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length >= level + 1)
-                {
-                    sliders[4].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieNum[level];
-                }
+             
                 Text slider5Num = slidersText[4].gameObject.GetComponent<Text>();
                 slider5Num.text = sliders[4].GetComponent<Slider>().value.ToString();
                 zombieLoaded = true;
@@ -1053,38 +1054,17 @@ public class buttonFunctions : MonoBehaviour
             {
                 pSlidersValue[0] = ZPlayerPrefs.custom1Settings[level][5];
                 sliders[5].GetComponent<Slider>().value = pSlidersValue[0];
-                if (ZPlayerPrefs.minPlayerHP.Length >= level + 1)
-                {
-                    sliders[5].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerHP[level];
-                }
-                if (ZPlayerPrefs.maxPlayerHP.Length >= level + 1)
-                {
-                    sliders[5].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerHP[level];
-                }
+               
                 Text slider6Num = slidersText[5].gameObject.GetComponent<Text>();
                 slider6Num.text = sliders[5].GetComponent<Slider>().value.ToString();
                 pSlidersValue[1] = ZPlayerPrefs.custom1Settings[level][6];
                 sliders[6].GetComponent<Slider>().value = pSlidersValue[1];
-                if (ZPlayerPrefs.minPlayerSpeed.Length >= level + 1)
-                {
-                    sliders[6].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerSpeed[level];
-                }
-                if (ZPlayerPrefs.maxPlayerSpeed.Length >= level + 1)
-                {
-                    sliders[6].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerSpeed[level];
-                }
+               
                 Text slider7Num = slidersText[6].gameObject.GetComponent<Text>();
                 slider7Num.text = sliders[6].GetComponent<Slider>().value.ToString();
                 pSlidersValue[2] = ZPlayerPrefs.custom1Settings[level][7];
                 sliders[7].GetComponent<Slider>().value = pSlidersValue[2];
-                if (ZPlayerPrefs.minPlayerDamage.Length >= level + 1)
-                {
-                    sliders[7].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerDamage[level];
-                }
-                if (ZPlayerPrefs.maxPlayerDamage.Length >= level + 1)
-                {
-                    sliders[7].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerDamage[level];
-                }
+                
                 Text slider8Num = slidersText[7].gameObject.GetComponent<Text>();
                 slider8Num.text = sliders[7].GetComponent<Slider>().value.ToString();
                 playerLoaded = true;
@@ -1104,62 +1084,27 @@ public class buttonFunctions : MonoBehaviour
             {
                 zSlidersValue[0] = ZPlayerPrefs.custom2Settings[level][0];
                 sliders[0].GetComponent<Slider>().value = zSlidersValue[0];
-                if (ZPlayerPrefs.minZombieHP.Length >= level + 1)
-                {
-                    sliders[0].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieHP[level];
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length >= level + 1)
-                {
-                    sliders[0].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieHP[level];
-                }
+               
                 Text slider1Num = slidersText[0].gameObject.GetComponent<Text>();
                 slider1Num.text = sliders[0].GetComponent<Slider>().value.ToString();
                 zSlidersValue[1] = ZPlayerPrefs.custom2Settings[level][1];
                 sliders[1].GetComponent<Slider>().value = zSlidersValue[1];
-                if (ZPlayerPrefs.minZombieSpeed.Length >= level + 1)
-                {
-                    sliders[1].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieSpeed[level];
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length >= level + 1)
-                {
-                    sliders[1].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieSpeed[level];
-                }
+               
                 Text slider2Num = slidersText[1].gameObject.GetComponent<Text>();
                 slider2Num.text = sliders[1].GetComponent<Slider>().value.ToString();
                 zSlidersValue[2] = ZPlayerPrefs.custom2Settings[level][2];
                 sliders[2].GetComponent<Slider>().value = zSlidersValue[2];
-                if (ZPlayerPrefs.minTimeBetweenWaves.Length >= level + 1)
-                {
-                    sliders[2].GetComponent<Slider>().minValue -= ZPlayerPrefs.minTimeBetweenWaves[level];
-                }
-                if (ZPlayerPrefs.maxTimeBetweenWaves.Length >= level + 1)
-                {
-                    sliders[2].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxTimeBetweenWaves[level];
-                }
+                
                 Text slider3Num = slidersText[2].gameObject.GetComponent<Text>();
                 slider3Num.text = sliders[2].GetComponent<Slider>().value.ToString();
                 zSlidersValue[3] = ZPlayerPrefs.custom2Settings[level][3];
                 sliders[3].GetComponent<Slider>().value = zSlidersValue[3];
-                if (ZPlayerPrefs.minZombieDamage.Length >= level + 1)
-                {
-                    sliders[3].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieDamage[level];
-                }
-                if (ZPlayerPrefs.maxZombieDamage.Length >= level + 1)
-                {
-                    sliders[3].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieDamage[level];
-                }
+               
                 Text slider4Num = slidersText[3].gameObject.GetComponent<Text>();
                 slider4Num.text = sliders[3].GetComponent<Slider>().value.ToString();
                 zSlidersValue[4] = ZPlayerPrefs.custom2Settings[level][4];
                 sliders[4].GetComponent<Slider>().value = zSlidersValue[4];
-                if (ZPlayerPrefs.minZombieNum.Length >= level + 1)
-                {
-                    sliders[4].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieNum[level];
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length >= level + 1)
-                {
-                    sliders[4].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieNum[level];
-                }
+                
                 Text slider5Num = slidersText[4].gameObject.GetComponent<Text>();
                 slider5Num.text = sliders[4].GetComponent<Slider>().value.ToString();
                 zombieLoaded = true;
@@ -1170,38 +1115,19 @@ public class buttonFunctions : MonoBehaviour
             {
                 pSlidersValue[0] = ZPlayerPrefs.custom2Settings[level][5];
                 sliders[5].GetComponent<Slider>().value = pSlidersValue[0];
-                if (ZPlayerPrefs.minPlayerHP.Length >= level + 1)
-                {
-                    sliders[5].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerHP[level];
-                }
-                if (ZPlayerPrefs.maxPlayerHP.Length >= level + 1)
-                {
-                    sliders[5].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerHP[level];
-                }
+
                 Text slider6Num = slidersText[5].gameObject.GetComponent<Text>();
                 slider6Num.text = sliders[5].GetComponent<Slider>().value.ToString();
-                pSlidersValue[1] = ZPlayerPrefs.custom1Settings[level][6];
+
+                pSlidersValue[1] = ZPlayerPrefs.custom2Settings[level][6];
                 sliders[6].GetComponent<Slider>().value = pSlidersValue[1];
-                if (ZPlayerPrefs.minPlayerSpeed.Length >= level + 1)
-                {
-                    sliders[6].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerSpeed[level];
-                }
-                if (ZPlayerPrefs.maxPlayerSpeed.Length >= level + 1)
-                {
-                    sliders[6].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerSpeed[level];
-                }
+
+
                 Text slider7Num = slidersText[6].gameObject.GetComponent<Text>();
                 slider7Num.text = sliders[6].GetComponent<Slider>().value.ToString();
                 pSlidersValue[2] = ZPlayerPrefs.custom2Settings[level][7];
                 sliders[7].GetComponent<Slider>().value = pSlidersValue[2];
-                if (ZPlayerPrefs.minPlayerDamage.Length >= level + 1)
-                {
-                    sliders[7].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerDamage[level];
-                }
-                if (ZPlayerPrefs.maxPlayerDamage.Length >= level + 1)
-                {
-                    sliders[7].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerDamage[level];
-                }
+
                 Text slider8Num = slidersText[7].gameObject.GetComponent<Text>();
                 slider8Num.text = sliders[7].GetComponent<Slider>().value.ToString();
                 playerLoaded = true;
@@ -1222,105 +1148,48 @@ public class buttonFunctions : MonoBehaviour
             {
                 zSlidersValue[0] = ZPlayerPrefs.custom3Settings[level][0];
                 sliders[0].GetComponent<Slider>().value = zSlidersValue[0];
-                if (ZPlayerPrefs.minZombieHP.Length >= level + 1)
-                {
-                    sliders[0].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieHP[level];
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length >= level + 1)
-                {
-                    sliders[0].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieHP[level];
-                }
+                
                 Text slider1Num = slidersText[0].gameObject.GetComponent<Text>();
                 slider1Num.text = sliders[0].GetComponent<Slider>().value.ToString();
                 zSlidersValue[1] = ZPlayerPrefs.custom3Settings[level][1];
                 sliders[1].GetComponent<Slider>().value = zSlidersValue[1];
-                if (ZPlayerPrefs.minZombieSpeed.Length >= level + 1)
-                {
-                    sliders[1].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieSpeed[level];
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length >= level + 1)
-                {
-                    sliders[1].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieSpeed[level];
-
-                }
+              
                 Text slider2Num = slidersText[1].gameObject.GetComponent<Text>();
                 slider2Num.text = sliders[1].GetComponent<Slider>().value.ToString();
                 zSlidersValue[2] = ZPlayerPrefs.custom3Settings[level][2];
                 sliders[2].GetComponent<Slider>().value = zSlidersValue[2];
-                if (ZPlayerPrefs.minTimeBetweenWaves.Length >= level + 1)
-                {
-                    sliders[2].GetComponent<Slider>().minValue -= ZPlayerPrefs.minTimeBetweenWaves[level];
-                }
-                if (ZPlayerPrefs.maxTimeBetweenWaves.Length >= level + 1)
-                {
-                    sliders[2].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxTimeBetweenWaves[level];
-                }
+                
                 Text slider3Num = slidersText[2].gameObject.GetComponent<Text>();
                 slider3Num.text = sliders[2].GetComponent<Slider>().value.ToString();
                 zSlidersValue[3] = ZPlayerPrefs.custom3Settings[level][3];
                 sliders[3].GetComponent<Slider>().value = zSlidersValue[3];
-                if (ZPlayerPrefs.minZombieDamage.Length >= level + 1)
-                {
-                    sliders[3].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieDamage[level];
-                }
-                if (ZPlayerPrefs.maxZombieDamage.Length >= level + 1)
-                {
-                    sliders[3].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieDamage[level];
-                }
+               
                 Text slider4Num = slidersText[3].gameObject.GetComponent<Text>();
                 slider4Num.text = sliders[3].GetComponent<Slider>().value.ToString();
                 zSlidersValue[4] = ZPlayerPrefs.custom3Settings[level][4];
                 sliders[4].GetComponent<Slider>().value = zSlidersValue[4];
-                if (ZPlayerPrefs.minZombieNum.Length >= level + 1)
-                {
-                    sliders[4].GetComponent<Slider>().minValue -= ZPlayerPrefs.minZombieNum[level];
-                }
-                if (ZPlayerPrefs.maxZombieHP.Length >= level + 1)
-                {
-                    sliders[4].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxZombieNum[level];
-                }
+                
                 Text slider5Num = slidersText[4].gameObject.GetComponent<Text>();
                 slider5Num.text = sliders[4].GetComponent<Slider>().value.ToString();
                 zombieLoaded = true;
             }
 
-            //player custom 1 level settings
+            //player custom 3 level settings
             if (playerSettings.activeInHierarchy == true && playerLoaded == false)
             {
                 pSlidersValue[0] = ZPlayerPrefs.custom3Settings[level][5];
                 sliders[5].GetComponent<Slider>().value = pSlidersValue[0];
-                if (ZPlayerPrefs.minPlayerHP.Length >= level + 1)
-                {
-                    sliders[5].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerHP[level];
-                }
-                if (ZPlayerPrefs.maxPlayerHP.Length >= level + 1)
-                {
-                    sliders[5].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerHP[level];
-                }
+              
                 Text slider6Num = slidersText[5].gameObject.GetComponent<Text>();
                 slider6Num.text = sliders[5].GetComponent<Slider>().value.ToString();
                 pSlidersValue[1] = ZPlayerPrefs.custom3Settings[level][6];
                 sliders[6].GetComponent<Slider>().value = pSlidersValue[1];
-                if (ZPlayerPrefs.minPlayerSpeed.Length >= level + 1)
-                {
-                    sliders[6].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerSpeed[level];
-                }
-                if (ZPlayerPrefs.maxPlayerSpeed.Length >= level + 1)
-                {
-                    sliders[6].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerSpeed[level];
-                }
+                
                 Text slider7Num = slidersText[6].gameObject.GetComponent<Text>();
                 slider7Num.text = sliders[6].GetComponent<Slider>().value.ToString();
                 pSlidersValue[2] = ZPlayerPrefs.custom3Settings[level][7];
                 sliders[7].GetComponent<Slider>().value = pSlidersValue[2];
-                if (ZPlayerPrefs.minPlayerDamage.Length >= level + 1)
-                {
-                    sliders[7].GetComponent<Slider>().minValue -= ZPlayerPrefs.minPlayerDamage[level];
-                }
-                if (ZPlayerPrefs.maxPlayerDamage.Length >= level + 1)
-                {
-                    sliders[7].GetComponent<Slider>().maxValue += ZPlayerPrefs.maxPlayerDamage[level];
-                }
+               
                 Text slider8Num = slidersText[7].gameObject.GetComponent<Text>();
                 slider8Num.text = sliders[7].GetComponent<Slider>().value.ToString();
                 playerLoaded = true;

@@ -92,6 +92,7 @@ public class levelManager : MonoBehaviour {
                 if (GameMaster._instance_.maxLevel > currentLevel)
                 {
                     GameMaster._instance_.levelsAvailable.Add(currentLevel + 1);
+                    ZPlayerPrefs.SetInt("LevelsUnlocked", GameMaster._instance_.levelsAvailable.Count);
                 }
             }
             SceneManager.LoadScene("levelCleared");

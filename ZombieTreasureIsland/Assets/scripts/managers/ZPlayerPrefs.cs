@@ -39,22 +39,22 @@ public static class ZPlayerPrefs
 
 
     //level min/max variables for possible settings
-    public static int[] minZombieHP = new int[0];
-    public static int[] maxZombieHP = new int[0];
-    public static int[] minZombieSpeed = new int[0];
-    public static int[] maxZombieSpeed = new int[0];
-    public static int[] minTimeBetweenWaves = new int[0];
-    public static int[] maxTimeBetweenWaves = new int[0];
-    public static int[] minZombieDamage = new int[0];
-    public static int[] maxZombieDamage = new int[0];
-    public static int[] minZombieNum = new int[0];
-    public static int[] maxZombieNum = new int[0];
-    public static int[] minPlayerHP = new int[0];
-    public static int[] maxPlayerHP = new int[0];
-    public static int[] minPlayerDamage = new int[0];
-    public static int[] maxPlayerDamage = new int[0];
-    public static int[] minPlayerSpeed = new int[0];
-    public static int[] maxPlayerSpeed = new int[0];
+    public static int[] minZombieHP = new int[GameMaster._instance_.maxLevel];
+    public static int[] maxZombieHP = new int[GameMaster._instance_.maxLevel];
+    public static int[] minZombieSpeed = new int[GameMaster._instance_.maxLevel];
+    public static int[] maxZombieSpeed = new int[GameMaster._instance_.maxLevel];
+    public static int[] minTimeBetweenWaves = new int[GameMaster._instance_.maxLevel];
+    public static int[] maxTimeBetweenWaves = new int[GameMaster._instance_.maxLevel];
+    public static int[] minZombieDamage = new int[GameMaster._instance_.maxLevel];
+    public static int[] maxZombieDamage = new int[GameMaster._instance_.maxLevel];
+    public static int[] minZombieNum = new int[GameMaster._instance_.maxLevel];
+    public static int[] maxZombieNum = new int[GameMaster._instance_.maxLevel];
+    public static int[] minPlayerHP = new int[GameMaster._instance_.maxLevel];
+    public static int[] maxPlayerHP = new int[GameMaster._instance_.maxLevel];
+    public static int[] minPlayerDamage = new int[GameMaster._instance_.maxLevel];
+    public static int[] maxPlayerDamage = new int[GameMaster._instance_.maxLevel];
+    public static int[] minPlayerSpeed = new int[GameMaster._instance_.maxLevel];
+    public static int[] maxPlayerSpeed = new int[GameMaster._instance_.maxLevel];
 
 
     //Custom settings storage
@@ -198,6 +198,13 @@ public static class ZPlayerPrefs
         if (HasKey("PlayerDoubloons"))
         {
             GameMaster._instance_.playerDoubloons = GetInt("PlayerDoubloons");
+        }
+        if (HasKey("LevelsUnlocked"))
+        {
+            for(int i = 1; i < GetInt("LevelsUnlocked"); i++)
+            {
+                GameMaster._instance_.levelsAvailable.Add(i+1);
+            }
         }
         //level 1 keys
 

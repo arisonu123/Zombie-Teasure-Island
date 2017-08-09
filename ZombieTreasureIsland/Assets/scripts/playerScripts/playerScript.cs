@@ -166,7 +166,7 @@ public class playerScript : MonoBehaviour {
         if (!controller.GetBool("dead"))
         {
             Movement();
-            //TODO:Refactor this to use buttons from the input manager so the player can change it if they wish
+           
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S))
             {
                controller.SetBool("walk", true);
@@ -176,11 +176,11 @@ public class playerScript : MonoBehaviour {
                 controller.SetBool("walk", false);
             }
 
-            if (Input.GetKeyDown(KeyCode.O))//attack with sword
+            if (Input.GetMouseButtonDown(0))//attack with sword
             {
                 StartCoroutine("swordAttack");
             }
-            if (Input.GetKeyDown(KeyCode.P))//attack with gun
+            if (Input.GetMouseButtonDown(1))//attack with gun
             {
                 gunAttack();
             }
@@ -209,24 +209,9 @@ public class playerScript : MonoBehaviour {
         Vector3 moveDirection = new Vector3(horMovement, 0,vertMovement);
         moveDirection = transform.TransformDirection(moveDirection);
         moveDirection *= speed;
-        // Vector3 fixedTransform=new Vector3(moveDirection.x,0,moveDirection.z);
-        if (GetComponent<CharacterController>().isGrounded)
-        {
-            GetComponent<CharacterController>().Move(moveDirection * Time.deltaTime);
-        }
-       /* if(transform.position.y != 0 ){
-            Vector3 zeroY = new Vector3(transform.position.x, 0, transform.position.y);
-            transform.position = zeroY;
-        }*/
-
-        // transform.Translate(transform.right * horMovement * Time.deltaTime * speed);
-        // transform.Translate(transform.forward * vertMovement * Time.deltaTime * speed);
-        // GetComponent<Rigidbody>().position=(transform.right * horMovement * Time.deltaTime * speed);
-        //GetComponent<Rigidbody>().position =(transform.forward * vertMovement * Time.deltaTime * speed);
-        // GetComponent<Rigidbody>().velocity = new Vector3(speed * horMovement, GetComponent<Rigidbody>().velocity.y,speed * vertMovement);
-        //GetComponentInChildren<Rigidbody>().velocity = new Vector3( speed * horMovement, GetComponentInChildren<Rigidbody>().velocity.y, speed * vertMovement);
-        // GetComponent<Rigidbody>().position = GetComponentInChildren<Rigidbody>().position;
-        // GetComponent<Rigidbody>().velocity = new Vector2(GetComponent<Rigidbody>().velocity.z, speed * vertMovement);
+        
+        GetComponent<CharacterController>().Move(moveDirection * Time.deltaTime);
+        
         //Player graphic rotation
         Vector3 rotateDirection = new Vector3(horMovement, 0, vertMovement);
         if (moveDirection != Vector3.zero)
@@ -281,22 +266,11 @@ public class playerScript : MonoBehaviour {
         }
         SceneManager.LoadScene("gameOver");
     }
-    /*
-        private void OnCollisionEnter(Collision collision)
-        {
-            Debug.Log("test");
-        }
-        */
-   
-   
-    private void OnCollisionStay(Collision coll)
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log("in");
+        Debug.Log("in controller hit");
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
-    private void OnCollisionExit(Collision coll)
-    {
-        Debug.Log("out");
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-    }
+
 }

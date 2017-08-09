@@ -48,6 +48,8 @@ public class GameMaster : MonoBehaviour {
     private AudioClip[] levelMusic;
     [SerializeField]
     private AudioClip menuMusic;
+    [SerializeField]
+    private bool[] minMaxSliderValuesSet;
 #pragma warning restore 649
     /// <summary>
     /// Get/set the current level chosen
@@ -123,7 +125,15 @@ public class GameMaster : MonoBehaviour {
     public AudioClip menuAudio
     {
         get { return menuMusic; }
-    } 
+    }
+
+    /// <summary>
+    /// Gets the array of bools for each level that determine whether or not min and max slider values have been set
+    /// </summary>
+    public bool[] AreSliderValuesSet
+    {
+        get { return minMaxSliderValuesSet; }
+    }
 
     private void Awake()
     {
@@ -157,6 +167,7 @@ public class GameMaster : MonoBehaviour {
     private void SetUpGameMaster()
     {
         ZPlayerPrefs.Initialize("ZombieTreasureIsland", "pw456239bpdfk");
+        minMaxSliderValuesSet = new bool[lastLevel];
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -186,7 +197,7 @@ public class GameMaster : MonoBehaviour {
                 List<UnityEngine.UI.Dropdown.OptionData> LevelsAvailable = new List<UnityEngine.UI.Dropdown.OptionData>();
                 for (int i = 0; i < levelsUnlocked.Count; i++)
                 {
-                    LevelsAvailable.Add(new UnityEngine.UI.Dropdown.OptionData(levelsUnlocked[0].ToString()));
+                    LevelsAvailable.Add(new UnityEngine.UI.Dropdown.OptionData(levelsUnlocked[i].ToString()));
                 }
                 if (levelsUnlocked.Count == 0)
                 {
